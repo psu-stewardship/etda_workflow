@@ -61,7 +61,6 @@ class ApplicationController < ActionController::Base
   end
 
   def logout
-    session = nil
     request.env['warden'].logout
     redirect_to '/'
   end
