@@ -5,6 +5,10 @@ if [ -f /vault/.vault-token ]; then
 
 fi
 
+if [ -f /vault/secrets/config ]; then
+   . /vault/secrets/config
+fi
+
 function start_envconsul() {
     set -u 
     envconsul \
