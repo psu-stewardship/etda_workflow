@@ -35,7 +35,7 @@ class AuthorController < ApplicationController
   end
 
   def storable_location?
-    request.get? && is_navigational_format? && !devise_controller? && !request.xhr? 
+    request.get? && is_navigational_format? && !devise_controller? && !request.xhr?
   end
 
   def authenticate_or_redirect
@@ -53,7 +53,7 @@ class AuthorController < ApplicationController
 
   def valid_author?
     return false if current_remote_user.blank?
-    
+
     true
   end
 

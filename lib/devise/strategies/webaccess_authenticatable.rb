@@ -4,8 +4,9 @@ require 'devise/strategies/authenticatable'
 module Devise
   module Strategies
     class WebaccessAuthenticatable < Authenticatable
-      def authenticate!
+      def authenticate!(user_role: nil)
         access_id = remote_user(request.headers)
+        @user_role = user_role
         Rails.logger.info "Devise Access ID ******* #{access_id}"
         if access_id.present? # webaccess successful
           this_object = authentication_type || Author.class
@@ -41,10 +42,14 @@ module Devise
       protected
 
       def authentication_type
-        uri = request.headers['REQUEST_URI']
-        this_uri = determine_login_type(uri)
-        # this_uri = uri.split('/')[1].camelcase
-        Object.const_get(this_uri)
+        if @user_role
+          Object.const_get(@user_role.camelcase)
+        else
+          uri = request.headers['REQUEST_URI']
+          this_uri = determine_login_type(uri)
+          # this_uri = uri.split('/')[1].camelcase
+          Object.const_get(this_uri)
+        end
       end
 
       def determine_login_type(uri)

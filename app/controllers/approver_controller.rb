@@ -35,7 +35,7 @@ class ApproverController < ApplicationController
   end
 
   def storable_location?
-    request.get? && is_navigational_format? && !devise_controller? && !request.xhr? 
+    request.get? && is_navigational_format? && !devise_controller? && !request.xhr?
   end
 
   def authenticate_or_redirect
@@ -43,7 +43,6 @@ class ApproverController < ApplicationController
     session[:user_role] = 'approver'
     session[:access_id] = current_approver[:access_id]
     redirect_to '/401' unless valid_approver?
-
 
     if valid_approver?
       authenticate_approver!
