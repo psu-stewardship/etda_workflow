@@ -37,8 +37,8 @@ class AdminController < ApplicationController
   end
 
   def authenticate_or_redirect
-    authenticate_admin!(user_role: 'admin') unless current_admin
     session[:user_role] = 'admin'
+    authenticate_admin!(user_role: 'admin') unless current_admin
     session[:access_id] = current_admin[:access_id]
 
     if valid_admin?

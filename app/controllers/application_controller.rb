@@ -52,12 +52,21 @@ class ApplicationController < ActionController::Base
 
   def login
     Rails.logger.info 'LOGGING IN APP CONTROLLER'
-    # webaccess_login_url = WebAccess.new(request.env['HTTP_REFERER']).login_url
-    # Rails.logger.info "REDIRECTING---" + "#{WebAccess.new(request.env['HTTP_REFERER']).login_url}  #{Time.zone.now}"
-    # redirect_to webaccess_login_url # unless Rails.env.development? || Rails.env.test?
-    user_role = session[:user_role] || 'author'
-    send("current_#{user_role}").save!
-    redirect_to saved_location_for(user_role.to_sym) || '/'
+
+    if session[:user_role]
+      user_role = session[:user_role]
+      send("current_#{user_role}").save!
+      redirect_to stored_location_for(user_role.to_sym) || '/'
+    else
+      login_default_author
+    end
+  end
+
+  def login_default_author
+    Devise::Strategies::WebaccessAuthenticatable.new(request.headers).authenticate!(user_role: 'author')
+    current_author.save!
+    session[:access_id] = current_author[:access_id]
+    redirect_to '/'
   end
 
   def logout

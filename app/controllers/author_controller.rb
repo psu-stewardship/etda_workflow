@@ -39,8 +39,8 @@ class AuthorController < ApplicationController
   end
 
   def authenticate_or_redirect
-    authenticate_author!(user_role: 'author') unless current_author
     session[:user_role] = 'author'
+    authenticate_author!(user_role: 'author') unless current_author
     session[:access_id] = current_author[:access_id]
 
     if valid_author?
