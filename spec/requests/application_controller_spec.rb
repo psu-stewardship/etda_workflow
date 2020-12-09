@@ -44,7 +44,7 @@ RSpec.describe 'Devise Login', type: :request do
       allow(Rails).to receive(:env) { "production".inquiry }
     end
 
-    it 'author can login and logout' do
+    xit 'author can login and logout' do
       get login_path
       assert_response :redirect, "<302: Found> redirect to <#{WebAccess.new.login_url}>"
 

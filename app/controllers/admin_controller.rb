@@ -2,16 +2,26 @@
 
 class AdminController < ApplicationController
   protect_from_forgery with: :exception
+  before_action :store_user_location!, if: :storable_location?
 
   Devise.add_module(:webaccess_authenticatable, strategy: true, controller: :sessions, model: 'devise/models/webaccess_authenticatable')
 
-  before_action :clear_admin
+  # before_action :clear_admin
   before_action :authenticate_or_redirect
   before_action :find_or_initialize_admin
 
   layout 'admin'
 
   protected
+
+  def storable_location?
+    request.get? && is_navigational_format? && !devise_controller? && !request.xhr? 
+  end
+
+  def store_user_location!
+    # :user is the scope we are authenticating
+    store_location_for(:admin, request.fullpath)
+  end
 
   def find_or_initialize_admin
     @admin ||= Admin.find_or_initialize_by(access_id: current_admin.access_id)
@@ -27,8 +37,11 @@ class AdminController < ApplicationController
   end
 
   def authenticate_or_redirect
+    authenticate_admin!(user_role: 'admin') unless current_admin
+    session[:user_role] = 'admin'
+    session[:access_id] = current_admin[:access_id]
+
     if valid_admin?
-      authenticate_admin! unless valid_admin_session?
       authorize! :administer, :all
     else
       redirect_to '/401' # unauthorized page

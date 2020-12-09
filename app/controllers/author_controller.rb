@@ -2,13 +2,13 @@
 
 class AuthorController < ApplicationController
   protect_from_forgery with: :exception
+  before_action :store_user_location!, if: :storable_location?
 
   Devise.add_module(:webaccess_authenticatable, strategy: true, controller: :sessions, model: 'devise/models/webaccess_authenticatable')
 
-  before_action :clear_author
-  before_action :find_or_initialize_author
+  # before_action :clear_author
   before_action :authenticate_or_redirect
-
+  # before_action :find_or_initialize_author
   layout 'author'
 
   protected
@@ -29,11 +29,22 @@ class AuthorController < ApplicationController
     request.env['warden'].logout if current_remote_user.nil? || !valid_author_session?
   end
 
+  def store_user_location!
+    # :user is the scope we are authenticating
+    store_location_for(:author, request.fullpath)
+  end
+
+  def storable_location?
+    request.get? && is_navigational_format? && !devise_controller? && !request.xhr? 
+  end
+
   def authenticate_or_redirect
-    return if valid_author_session?
+    authenticate_author!(user_role: 'author') unless current_author
+    session[:user_role] = 'author'
+    session[:access_id] = current_author[:access_id]
 
     if valid_author?
-      authenticate_author!
+      find_or_initialize_author
       update_confidential_hold
     else
       redirect_to '/401'
@@ -42,8 +53,7 @@ class AuthorController < ApplicationController
 
   def valid_author?
     return false if current_remote_user.blank?
-
-    session[:user_role] = 'author'
+    
     true
   end
 

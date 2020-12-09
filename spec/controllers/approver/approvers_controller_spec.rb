@@ -14,6 +14,7 @@ RSpec.describe Approver::ApproversController, type: :controller do
 
   describe '#index' do
     it 'shows all committee member reviews' do
+      session = Hash.new
       expect(get: approver_approver_reviews_path).to route_to(controller: 'approver/approvers', action: 'index')
     end
 

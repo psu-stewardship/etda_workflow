@@ -2,12 +2,13 @@
 
 class ApproverController < ApplicationController
   protect_from_forgery with: :exception
+  before_action :store_user_location!, if: :storable_location?
 
   Devise.add_module(:webaccess_authenticatable, strategy: true, controller: :sessions, model: 'devise/models/webaccess_authenticatable')
 
-  before_action :clear_approver
-  before_action :find_or_initialize_approver
+  # before_action :clear_approver
   before_action :authenticate_or_redirect
+  before_action :find_or_initialize_approver
 
   layout 'approver'
 
@@ -28,8 +29,21 @@ class ApproverController < ApplicationController
     request.env['warden'].logout if current_remote_user.nil? || !valid_approver_session?
   end
 
+  def store_user_location!
+    # :user is the scope we are authenticating
+    store_location_for(:approver, request.fullpath)
+  end
+
+  def storable_location?
+    request.get? && is_navigational_format? && !devise_controller? && !request.xhr? 
+  end
+
   def authenticate_or_redirect
-    return if valid_approver_session?
+    authenticate_approver! unless current_approver
+    session[:user_role] = 'approver'
+    session[:access_id] = current_approver[:access_id]
+    redirect_to '/401' unless valid_approver?
+
 
     if valid_approver?
       authenticate_approver!
@@ -41,7 +55,6 @@ class ApproverController < ApplicationController
   def valid_approver?
     return false if current_remote_user.blank?
 
-    session[:user_role] = 'approver'
     true
   end
 
