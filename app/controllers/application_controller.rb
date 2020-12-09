@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
 
     if session[:user_role]
       user_role = session[:user_role]
-      send("current_#{user_role}").save!
+      send("current_#{user_role}").save(validate: false)
       redirect_to stored_location_for(user_role.to_sym) || '/'
     else
       login_default_author
@@ -64,7 +64,7 @@ class ApplicationController < ActionController::Base
 
   def login_default_author
     Devise::Strategies::WebaccessAuthenticatable.new(request.headers).authenticate!(user_role: 'author')
-    current_author.save!
+    current_author.save(validate: false)
     session[:access_id] = current_author[:access_id]
     redirect_to '/'
   end
