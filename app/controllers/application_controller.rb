@@ -63,7 +63,7 @@ class ApplicationController < ActionController::Base
   end
 
   def login_default_author
-    Devise::Strategies::WebaccessAuthenticatable.new(request.headers).authenticate!(user_role: 'author')
+    Devise::Strategies::WebaccessAuthenticatable.new(request.headers).authenticate!
     current_author.save(validate: false)
     session[:access_id] = current_author[:access_id]
     redirect_to '/'

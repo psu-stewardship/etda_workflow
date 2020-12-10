@@ -44,11 +44,6 @@ class ApproverController < ApplicationController
     session[:access_id] = current_approver[:access_id]
     redirect_to '/401' unless valid_approver?
 
-    if valid_approver?
-      authenticate_approver!
-    else
-      redirect_to '/401'
-    end
   end
 
   def valid_approver?
