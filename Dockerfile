@@ -2,7 +2,7 @@
 FROM ruby:2.6.6 as base
 
 ## NodeJS
-ENV NODE_VERSION 10.17.0
+ENV NODE_VERSION 10.22.1
 RUN mkdir /usr/local/nvm
 ENV NVM_DIR /usr/local/nvm
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]

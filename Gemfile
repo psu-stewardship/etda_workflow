@@ -11,7 +11,7 @@ gem 'mysql2'
 # Use Puma as the app server
 gem 'puma', ">= 4.3.0"
 # See https://github.com/rails/execjs#readme for more supported runtimes
-gem 'webpacker', '~> 3.5.5'
+gem 'webpacker', '~> 6.0.0.beta.6'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production

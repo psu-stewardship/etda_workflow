@@ -364,6 +364,7 @@ GEM
       tilt
     seedbank (0.5.0)
       rake (>= 10.0)
+    semantic_range (3.0.0)
     shoulda-matchers (4.3.0)
       activesupport (>= 4.2.0)
     sidekiq (5.2.9)
@@ -426,10 +427,11 @@ GEM
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
-    webpacker (3.5.5)
-      activesupport (>= 4.2)
+    webpacker (6.0.0.pre.2)
+      activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
-      railties (>= 4.2)
+      railties (>= 5.2)
+      semantic_range (>= 2.3.0)
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -507,7 +509,7 @@ DEPENDENCIES
   sprockets (~> 3.7.2)
   web-console (>= 3.3.0)
   webmock (~> 3.8.0)
-  webpacker (~> 3.5.5)
+  webpacker (~> 6.0.0.beta.6)
   whenever (~> 1.0.0)
 
 RUBY VERSION
