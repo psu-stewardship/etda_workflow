@@ -12,7 +12,7 @@
 
 <%= simple_form_for [:author, @submission], url: author_submission_update_final_submission_path do |f| %>
       <% if @submission.final_submission_notes.present? %>
-        <div id="final-submission-notes" class="row">
+        <div id="final-submission-notes" class="col-sm-12">
           <div class="col-xs-12">
             <label>Final Submission notes from the administrator</label>
             <div class="alert alert-<%= @submission.status_behavior.beyond_waiting_for_final_submission_response? ? 'info' : 'warning'  %>">
@@ -25,12 +25,15 @@
       <%= render partial: 'title_and_checkbox', locals: {f: f} %>
       <%= render partial: 'semester_year', locals: {f: f}  %>
       <%= render partial: 'defended_at_date', locals: {f: f} if current_partner.graduate? %>
+      <br/>
 
-      <%= f.input :abstract, as: :text, required: true, label: 'Abstract', input_html: {rows: 8} %>
+      <%= f.input :abstract, as: :text, required: true, label: '<strong>Abstract</strong>'.html_safe, input_html: {rows: 6} %>
 
-      <%= f.input :delimited_keywords, as: :string, label: 'Keywords', wrapper: :hint_top, hint: Keyword.hint, required: true, input_html: { class: 'tagit' } %>
+      <%= f.input :delimited_keywords, as: :string, label: '<strong>Keywords</strong>'.html_safe, wrapper: :hint_top, hint: Keyword.hint, required: true, input_html: { class: 'tagit' } %>
+      <br/>
 
       <%= render partial: @view.author_access_level_view, locals: {f: f}  %>
+      <br/>
 
       <div id="final-submission-file-fields">
         <%= render partial: 'author/submissions/final_submission_file_label' %>
@@ -47,7 +50,7 @@
                                        data: { association_insertion_node: '#final-submission-file-fields', association_insertion_method: 'append' },
                                        form_name: 'file_fields',
                                        partial: 'file_fields' do %>
-          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  Add Additional File
+          <span class="fa fa-plus" aria-hidden="true"></span>  Add Additional File
         <% end %>
       </div>
 
@@ -65,9 +68,9 @@
       <%#= render 'shared/release_statement' %>
       <%#= f.input :has_agreed_to_publication_release, label: 'I agree to release agreement', as: :boolean, wrapper: :vertical_boolean, required: true %>
       <div class="form-group actions col-xs-6">
-        <%= f.button :submit, class: "btn-primary author-final-submit", value: "Submit final files for review" unless current_partner.graduate? %>
-        <%= '<span class="btn btn-primary author-final-submit" id="submit-final-submission">Submit final files for review</span>'.html_safe if current_partner.graduate? %>
-        <%= link_to "Cancel", author_root_path, class: 'btn cancel-link' %>
+        <%= f.button :submit, class: "btn-success author-final-submit", value: "Submit final files for review" unless current_partner.graduate? %>
+        <%= '<span class="btn btn-success author-final-submit" id="submit-final-submission">Submit final files for review</span>'.html_safe if current_partner.graduate? %>
+        <%= link_to "Cancel", author_root_path, class: 'btn btn-light' %>
       </div>
   <% end %>
 </div>

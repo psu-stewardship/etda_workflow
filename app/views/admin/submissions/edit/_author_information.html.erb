@@ -1,5 +1,5 @@
 <%= render 'admin/submissions/edit/form_section_header', target: 'author-information' %>
-<div id="author-information" class="form-section-body collapse in">
+<div id="author-information" class="form-section-body collapse show">
   <div class="row">
     <div class="col-xs-12 col-sm-6">
       <p>
@@ -10,14 +10,14 @@
     </div>
     <div class="col-xs-12 col-sm-6">
       <p>
-        <div class="pull-right"><strong>PSU Id: </strong><%= @view.author.psu_idn || 'N/A' %></div>
+        <div class="float-right"><strong>PSU Id: </strong><%= @view.author.psu_idn || 'N/A' %></div>
         <strong>Access Id: </strong><%= @view.author.access_id %><br />
         <strong>Phone:</strong> <%= @view.author_phone_number %> <br />
         <strong>Alternate email:</strong> <%= @view.author_alternate_email_address %><br />
         <strong>Penn State email:</strong> <%= @view.author_psu_email_address %><br />
       </p>
     </div>
-    <div class="col-xs-12">
+    <div class="col-sm-12">
       <%= link_to edit_admin_author_path(@view.author), class: 'form-edit-link' do %>
         <span class="fa"></span> Edit Author Information
       <% end %>

@@ -1,20 +1,20 @@
 
 
-<div class="nested-fields">
+<div class="nested-fields col-sm-8">
   <% if file_fields.object.asset_identifier %>
     <div id="<%= file_fields.object.class_name %>-<%= file_fields.object.id %>" class="form-group uploaded-file-link <%= can_delete ? 'can-delete' : 'cannot-delete' %> ">
         <%= link_to_remove_association "[delete]", file_fields, id: 'file_delete_link', class: 'text-danger can-toggle-clickability' %>
             <%= link_to "/#{session['user_role']}/files/#{file_fields.object.link_identifier}/#{file_fields.object.id}", class: 'file-link', target: '_blank' do %>
                 <%= file_fields.object.asset_identifier %>
             <% end %>
-      <div class="badge pull-right upload-date"><div>Uploaded <%= l file_fields.object.created_at, format: t("#{current_partner.id}.time.formats.medium") %></div></div>
+      <div class="badge badge-secondary float-right upload-date"><div>Uploaded <%= l file_fields.object.created_at, format: t("#{current_partner.id}.time.formats.medium") %></div></div>
     </div>
   <% else %>
     <span class='sr-only'>Select the file you wish to upload using the file browser.</span>
       <%= file_fields.input :asset, as: :file, label: false %>
+      <%= link_to_remove_association "[remove]", file_fields, class: 'text-danger can-toggle-clickability', html: {tabindex: '0'}  %>
       <%= file_fields.input :asset_cache, :as => :hidden %>
       <%= file_fields.object.asset_identifier %>
-      <%= link_to_remove_association "[remove]", file_fields, class: 'text-danger can-toggle-clickability', html: {tabindex: '0'}  %>
   <% end %>
 </div>
 

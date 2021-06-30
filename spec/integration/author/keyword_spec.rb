@@ -25,7 +25,7 @@ RSpec.describe 'Tagit-keywords', type: :integration, js: true do
 
     it 'allows author to enter keywords that contain a blank' do
       visit author_submission_edit_final_submission_path(submission)
-      page.find("li.tagit-new input").set('stuff and more stuff')
+      page.find("li.tagit-new input").set('stuff and more stuff,')
       expect(page).to have_content('stuff and more stuff')
     end
 
@@ -41,8 +41,8 @@ RSpec.describe 'Tagit-keywords', type: :integration, js: true do
     it 'allows author to add more than one keyword', js: true do
       visit author_submission_edit_final_submission_path(submission)
       number_of_keywords = page.all('ul.tagit li span.tagit-label').count
-      page.find("li.tagit-new input").set('add another keyword')
-      page.find("li.tagit-new input").set('and one more')
+      page.find("li.tagit-new input").set('add another keyword,')
+      page.find("li.tagit-new input").set('and one more,')
       expect(page).to have_selector('ul.tagit li span.tagit-label', count: number_of_keywords + 2)
     end
 
@@ -50,7 +50,7 @@ RSpec.describe 'Tagit-keywords', type: :integration, js: true do
       submission2.keywords = []
       new_keyword = 'a newkeyword'
       visit author_submission_edit_final_submission_path(submission2)
-      page.find("li.tagit-new input").set(new_keyword)
+      page.find("li.tagit-new input").set(new_keyword + ',')
       expect(page).to have_content(new_keyword)
       page.find('a.tagit-close').click
       expect(page).to have_content('Are you sure you want to delete keyword "' + new_keyword + '"?')

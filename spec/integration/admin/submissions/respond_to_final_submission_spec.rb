@@ -42,8 +42,10 @@ RSpec.describe "when admin responds to final submission", js: true do
         select select_month, from: 'submission[defended_at(2i)]'
         select select_day, from: 'submission[defended_at(3i)]'
       end
-      click_button 'Approve Final Submission'
-      # expect(page).to have_content("The submission's final submission information was successfully approved.")
+      page.accept_confirm do
+        click_button 'Approve Final Submission'
+      end
+      expect(page).to have_content("The submission's final submission information was successfully approved.")
       submission.reload
       expect(submission.status).to eq 'waiting for publication release'
       expect(submission.final_submission_approved_at).not_to be_nil
@@ -61,8 +63,10 @@ RSpec.describe "when admin responds to final submission", js: true do
       FactoryBot.create :final_submission_file, submission: submission
       visit admin_edit_submission_path(submission)
       fill_in 'Final Submission Notes to Student', with: 'Note on need for revisions'
-      click_button 'Reject & request revisions'
-      # expect(page).to have_content('final submission information was successfully rejected and returned to the author for revision')
+      page.accept_confirm do
+        click_button 'Reject & request revisions'
+      end
+      expect(page).to have_content('final submission information was successfully rejected and returned to the author for revision')
       submission.reload
       expect(submission.status).to eq 'collecting final submission files rejected'
       submission.reload
@@ -73,8 +77,10 @@ RSpec.describe "when admin responds to final submission", js: true do
   describe "when an admin clicks 'Send to committee'" do
     it "updates status to 'waiting for committee review'" do
       visit admin_edit_submission_path(submission)
-      click_button 'Send to committee'
-      # expect(page).to have_content('final submission information was successfully rejected and returned to the author for revision')
+      page.accept_confirm do
+        click_button 'Send to committee'
+      end
+      expect(page).to have_content('successfully returned to the committee review stage and the committee was notified to visit the site for review.')
       submission.reload
       expect(submission.status).to eq 'waiting for committee review'
       expect(WorkflowMailer.deliveries.last.subject).to eq "Committee Review Initiated"
@@ -88,7 +94,9 @@ RSpec.describe "when admin responds to final submission", js: true do
                                                           committee_role: CommitteeRole.find_by(degree_type: submission.degree_type,
                                                                                                 is_program_head: true))
         visit admin_edit_submission_path(submission)
-        click_button 'Send to program head'
+        page.accept_confirm do
+          click_button 'Send to program head'
+        end
         expect(page).to have_content('program head review stage and the program head')
         submission.reload
         expect(submission.status).to eq 'waiting for head of program review'

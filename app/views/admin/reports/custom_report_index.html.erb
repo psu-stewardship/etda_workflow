@@ -21,14 +21,18 @@
       </div>
 
       <div id="row-selection-buttons">
-        <button class="select-visible-button btn btn-sm btn-default">Select Visible</button>
-        <button class="deselect-visible-button btn btn-sm btn-default">Deselect Visible</button>
-        <%= select('submission',
-                   'semester_year',
-                   @submissions.order('year DESC').pluck(:year, :semester).uniq.map{|str| ["#{str[0].to_s} #{str[1]}"]}, {}, :class=> 'form-control input-sm semester pull-right') %>
+        <button class="select-visible-button btn btn-sm btn-light">Select Visible</button>
+        <button class="deselect-visible-button btn btn-sm btn-light">Deselect Visible</button>
+
       </div>
     </div>
+    <%= select('submission',
+               'semester_year',
+               @submissions.order('year DESC').pluck(:year, :semester).uniq.map{|str| ["#{str[0].to_s} #{str[1]}"]},
+               {},
+               :class=> 'form-control input-sm semester ml-auto') %>
 </div>
+
 
 <table id="custom-report-index" class="table table-striped custom-report-index datatable bulk-actions" data-ajax-url="<%= admin_custom_report_index_path %>" data-default-semester="<%= Semester.current %>">
  <thead>

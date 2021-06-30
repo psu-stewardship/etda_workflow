@@ -1,8 +1,7 @@
 <div class="row">
-  <div class="col-xs-12 col-sm-9">
-    <h1>The Submission Process </h1>
-  </div>
+  <h1>The Submission Process </h1>
   <div class="col-xs-12">
+    <br/>
     <p class="thesis_info">You will need to input your committee, upload your format review document, and upload your final document to be published. The site administrator will check the format review document for compliance to standards, and send an email detailing any format changes required.  Once the status of your format review is updated to "Approved", a final document may be submitted.  Your committee will then give a final approval.  </p>
   </div>
 </div>
@@ -10,7 +9,7 @@
 <br />
 <% if current_partner.graduate? %>
   <div class="alert alert-info">
-    <p class="hint"><span class="text-info"><strong>Note:</strong></span> If you submitted a format review before Spring 2021, please use that submission instead of the submission imported from LionPATH.</p>
+    <strong class="hint"><span class="text-info"><strong>Note:</strong></span> If you submitted a format review before Spring 2021, please use that submission instead of the submission imported from LionPATH.</strong>
   </div>
 <% end %>
 <%= render @view.partial_name, partial_path: @view.contact_information_path %>

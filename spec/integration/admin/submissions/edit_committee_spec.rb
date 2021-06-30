@@ -26,7 +26,7 @@ RSpec.describe "Editing committee member information", js: true, honors: true, m
       end
       last_committee_member_remove = find_all("a", text: "Remove Committee Member").last
       find("select#submission_committee_members_attributes_0_status").find(:option, 'Approved').select_option
-      last_committee_member_remove.trigger('click')
+      last_committee_member_remove.click
     end
     click_button 'Update Metadata'
     submission.reload

@@ -13,7 +13,7 @@ RSpec.describe "Placing a final submission on hold as an admin", js: true do
   context 'when visiting the queues dashboard' do
     it 'can select the final submission on hold queue' do
       visit admin_submissions_dashboard_path(DegreeType.default)
-      find('h2', text: 'Final Submission is On Hold').click
+      find('h3', text: 'Final Submission is On Hold').click
       expect(page).to have_content('Final Submission is On Hold')
       expect(page).to have_content('Search:')
     end

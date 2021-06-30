@@ -102,7 +102,7 @@ class Admin::SubmissionFormView < SimpleDelegator
   def form_section_heading(section_heading)
     return "class='form-section-heading collapsed' aria-expanded='false'".html_safe if collapse_content?(section_heading)
 
-    "class='form-section-heading collapse in'".html_safe
+    "class='form-section-heading collapse show'".html_safe
   end
 
   def chevron_class(section_heading)
@@ -114,7 +114,7 @@ class Admin::SubmissionFormView < SimpleDelegator
   def form_section_body(section_heading)
     return "class='form-section-body collapse' aria-expanded='false'".html_safe if collapse_content?(section_heading)
 
-    "class='form-section-body collapse in'".html_safe
+    "class='form-section-body collapse show'".html_safe
   end
 
   private

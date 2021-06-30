@@ -5,23 +5,21 @@
 <% end %>
 
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-sm-12">
     <h2>My Submissions</h2>
-    <p class="row">
-      <%= render partial: 'admin_submission_buttons' if admin? && current_partner.graduate? %>
-    </p>
+    <% if admin? && current_partner.graduate? %>
+      <p class="row">
+        <%= render partial: 'admin_submission_buttons'  %>
+      </p>
+    <% end %>
+    <div class="alert alert-info col-sm-10">
+      <strong class="hint"><%= @view.no_submissions_message.html_safe %></strong>
+    </div>
   </div>
 </div>
 
 <div id="submissions" class="row">
-
-  <div class="col-xs-12 submission">
-    <br />
-    <div class="alert alert-info">
-    <p class="hint"><%= @view.no_submissions_message.html_safe %></p>
-    </div>
-
+  <div class="col-sm-8 submission">
     <%= render 'progress_indicator_preview'%>
   </div>
-
 </div>

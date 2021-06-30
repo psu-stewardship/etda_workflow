@@ -1,10 +1,10 @@
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-sm-9 content-main">
     <h1><%= @view.title %></h1>
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-sm-12">
     <% @view.filters.each do |filter| %>
       <% next if filter[:title].nil? %>
       <%= render partial: 'filter', locals: { filter: filter } %>

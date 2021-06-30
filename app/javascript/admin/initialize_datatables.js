@@ -6,7 +6,7 @@
 
 var $ = require('jquery');
 window.jQuery = $;
-var DataTable = require('datatables.net-bs');
+var DataTable = require('datatables.net-bs4');
 
 $('table').DataTable();
 
@@ -162,7 +162,7 @@ setup_datatables = function() {
 
     if ($('.admin-submissions-index.datatable').length) {
         const default_semester = $('.admin-submissions-index.datatable').data('default-semester');
-        $filters.append($('<label class="pull-right"></label>').append(select));
+        $filters.append($('<label class="float-right"></label>').append(select));
         for (i = 0; i < semesters.length; i++) {
             select.append(`<option value="${semesters[i]}">${semesters[i]}</option>`)
         }

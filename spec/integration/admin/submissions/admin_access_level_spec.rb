@@ -25,12 +25,12 @@ RSpec.describe 'Admin submission access_level', js: true do
 
   context 'admin users can choose the access level', milsch: true do
     it 'has an open_access radio button' do
-      page.find("input#submission_access_level_open_access").trigger('click')
+      page.find("input#submission_access_level_open_access").click
       expect(find("#submission_access_level_open_access")).to be_checked
       expect(page).to have_content('Enter justification') if current_partner.milsch?
     end
     it 'has a restricted_to_institution radio button' do
-      page.find("input#submission_access_level_restricted_to_institution").trigger('click')
+      page.find("input#submission_access_level_restricted_to_institution").click
       expect(page.find("input#submission_access_level_restricted_to_institution")).to be_checked
       if current_partner.milsch?
         expect(page).to have_content('Enter justification')
@@ -39,7 +39,7 @@ RSpec.describe 'Admin submission access_level', js: true do
       expect(page).to have_field('submission_invention_disclosures_attributes_0_id_number')
     end
     it 'has a restricted radio button' do
-      page.find("input#submission_access_level_restricted").trigger('click')
+      page.find("input#submission_access_level_restricted").click
       expect(page.find("input#submission_access_level_restricted")).to be_checked
       click_button('Update Metadata Only')
       expect(page).to have_content('Enter justification') if current_partner.milsch?

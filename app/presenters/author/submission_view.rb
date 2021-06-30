@@ -254,7 +254,7 @@ class Author::SubmissionView < SimpleDelegator
   end
 
   def step_eight_arrow
-    return '<div class="direction glyphicon glyphicon-arrow-down"></div>'.html_safe if status_behavior.waiting_for_publication_release? || status_behavior.released_for_publication?
+    return '<div class="direction fa fa-arrow-down"></div>'.html_safe if status_behavior.waiting_for_publication_release? || status_behavior.released_for_publication?
 
     ''
   end

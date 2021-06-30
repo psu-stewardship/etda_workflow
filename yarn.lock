@@ -2217,15 +2217,10 @@ bootstrap-sass@^3.3.7:
   resolved "https://registry.yarnpkg.com/bootstrap-sass/-/bootstrap-sass-3.4.1.tgz#6843c73b1c258a0ac5cb2cc6f6f5285b664a8e9a"
   integrity sha512-p5rxsK/IyEDQm2CwiHxxUi0MZZtvVFbhWmyMOt4lLkA4bujDA1TGoKT0i1FKIWiugAdP+kK8T5KMDFIKQCLYIA==
 
-bootstrap3@^3.3.5:
-  version "3.3.5"
-  resolved "https://registry.yarnpkg.com/bootstrap3/-/bootstrap3-3.3.5.tgz#496a4ef6c087214fa96838196d60de645e82591a"
-  integrity sha1-SWpO9sCHIU+paDgZbWDeZF6CWRo=
-
-bootstrap@>=3.4.1:
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.4.1.tgz#8582960eea0c5cd2bede84d8b0baf3789c3e8b01"
-  integrity sha512-tbx5cHubwE6e2ZG7nqM3g/FZ5PQEDMWmMGNrCUBVRPHXTJaH7CBDdsLeu3eCh3B1tzAxTnAbtmrzvWEvT2NNEA==
+bootstrap@>=4.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.6.0.tgz#97b9f29ac98f98dfa43bf7468262d84392552fd7"
+  integrity sha512-Io55IuQY3kydzHtbGvQya3H+KorS/M9rSNyfCGCg9WZ4pyT/lCxIlpJgG1GXW/PswzC84Tr2fBYi+7+jFVQQBw==
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -3350,7 +3345,15 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
-datatables.net-bs@^1.10.15, datatables.net-bs@^1.10.22:
+datatables.net-bs4@^1.10.23:
+  version "1.10.23"
+  resolved "https://registry.yarnpkg.com/datatables.net-bs4/-/datatables.net-bs4-1.10.23.tgz#bdd5d0dcb1bd68a7afe649a4424ba20647523b52"
+  integrity sha512-ChUB8t5t5uzPnJYTPXx2DOvnlm2shz8OadXrKoFavOadB308OuwHVxSldYq9+KGedCeiVxEjNqcaV4nFSXkRsw==
+  dependencies:
+    datatables.net "1.10.23"
+    jquery ">=1.7"
+
+datatables.net-bs@^1.10.15:
   version "1.10.23"
   resolved "https://registry.yarnpkg.com/datatables.net-bs/-/datatables.net-bs-1.10.23.tgz#985094ea63b28c630de4a0ecb75804ab53341fb0"
   integrity sha512-O/kJxT93i9hIq8trdbHuIcHhrTodkVPfPqvxOqKK8lJ03XUUrT6V8ZoGyxROFjQGcgbye5CoRLVf7MY+5biOIQ==
@@ -3376,18 +3379,18 @@ datatables.net-buttons@1.6.5:
     jquery ">=1.7"
 
 datatables.net-fixedheader-bs@^3.1.3:
-  version "3.1.7"
-  resolved "https://registry.yarnpkg.com/datatables.net-fixedheader-bs/-/datatables.net-fixedheader-bs-3.1.7.tgz#9c475eb092d3afb0982571b3f440f622996db90c"
-  integrity sha512-f925wVy4OvLR4Z3F6Q8ZNZKhq4eGWfN4KyKFYPqFxycZUz3381K1qFiaELxtr+y8IadWSkm3nkp4cp9Oq24yow==
+  version "3.1.8"
+  resolved "https://registry.yarnpkg.com/datatables.net-fixedheader-bs/-/datatables.net-fixedheader-bs-3.1.8.tgz#1bdf9640a33221ddbafad84117c50d79780d8a2e"
+  integrity sha512-10PuO5dZPWKuPzYyI8kdpkx/Shl+MhEMVXtBbc4A7z0fTW40sh3pr4RaQhxOCFAOMQONAtgM+ylxi1pCKZCYsw==
   dependencies:
     datatables.net-bs "^1.10.15"
-    datatables.net-fixedheader "3.1.7"
+    datatables.net-fixedheader "3.1.8"
     jquery ">=1.7"
 
-datatables.net-fixedheader@3.1.7:
-  version "3.1.7"
-  resolved "https://registry.yarnpkg.com/datatables.net-fixedheader/-/datatables.net-fixedheader-3.1.7.tgz#d1d02f96f765e6d1877f9f799ded9b818074abaf"
-  integrity sha512-WN2UFDn/i/6NAXMjyfd67Yfwm5lIdP8e1N1rBqQ30izZ8IituJKDFffVTi0y5S3SiwZzCpKFRvdLEehFtCaQng==
+datatables.net-fixedheader@3.1.8:
+  version "3.1.8"
+  resolved "https://registry.yarnpkg.com/datatables.net-fixedheader/-/datatables.net-fixedheader-3.1.8.tgz#e78c41de065429fa92b20b4d3a8ef5536f87b002"
+  integrity sha512-MLZgzkU6sGNSqlKuuJC/5/ps4xcmJQZILHqr5bOK/2kBEzCZzH+ZVOjudVRshnxkFn7IOTAOecMQHI6HPHFhag==
   dependencies:
     datatables.net "^1.10.15"
     jquery ">=1.7"
@@ -6706,10 +6709,10 @@ pnp-webpack-plugin@^1.6.4:
   dependencies:
     ts-pnp "^1.1.6"
 
-popper.js@^1.14.3:
-  version "1.16.0"
-  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.0.tgz#2e1816bcbbaa518ea6c2e15a466f4cb9c6e2fbb3"
-  integrity sha512-+G+EkOPoE5S/zChTpmBSSDYmhXJ5PsW8eMhH8cP/CQHMFPBG/kC9Y5IIw6qNYgdJ+/COf0ddY2li28iHaZRSjw==
+popper.js@^1.16.0:
+  version "1.16.1"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.1.tgz#2a223cb3dc7b6213d740e40372be40de43e65b1b"
+  integrity sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ==
 
 portfinder@^1.0.26:
   version "1.0.28"

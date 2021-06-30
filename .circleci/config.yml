@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: devago/docker-compose
+      - image: harbor.k8s.libraries.psu.edu/library/ci-utils:v1.1.0
     environment:
       REGISTRY_HOST: harbor.k8s.libraries.psu.edu
       REGISTRY_URL: harbor.k8s.libraries.psu.edu/library/etda-workflow
@@ -37,7 +37,7 @@ jobs:
           - cc-test-reporter
   rubocop:
     docker:
-      - image: devago/docker-compose
+      - image: harbor.k8s.libraries.psu.edu/library/ci-utils:v1.1.0
     environment:
       REGISTRY_HOST: harbor.k8s.libraries.psu.edu
       REGISTRY_URL: harbor.k8s.libraries.psu.edu/library/etda-workflow
@@ -56,7 +56,7 @@ jobs:
           RAILS_ENV=test docker-compose run --name=rubocop test bundle exec rubocop
   integration_test_grad:
     docker:
-      - image: devago/docker-compose
+      - image: harbor.k8s.libraries.psu.edu/library/ci-utils:v1.1.0
     environment:
       REGISTRY_HOST: harbor.k8s.libraries.psu.edu
       REGISTRY_URL: harbor.k8s.libraries.psu.edu/library/etda-workflow
@@ -83,7 +83,7 @@ jobs:
           - integration_coverage.json
   unit_test_grad:
     docker:
-      - image: devago/docker-compose
+      - image: harbor.k8s.libraries.psu.edu/library/ci-utils:v1.1.0
     environment:
       REGISTRY_HOST: harbor.k8s.libraries.psu.edu
       REGISTRY_URL: harbor.k8s.libraries.psu.edu/library/etda-workflow
@@ -110,7 +110,7 @@ jobs:
             - unit_coverage.json
   publish:
     docker:
-      - image: devago/docker-compose
+      - image: harbor.k8s.libraries.psu.edu/library/ci-utils:v1.1.0
     environment:
       REGISTRY_HOST: harbor.k8s.libraries.psu.edu
       REGISTRY_URL: harbor.k8s.libraries.psu.edu/library/etda-workflow
@@ -134,7 +134,7 @@ jobs:
             docker push $REGISTRY_URL:$CIRCLE_SHA1
   test_partners:
     docker:
-      - image: devago/docker-compose
+      - image: harbor.k8s.libraries.psu.edu/library/ci-utils:v1.1.0
     environment:
       REGISTRY_HOST: harbor.k8s.libraries.psu.edu
       REGISTRY_URL: harbor.k8s.libraries.psu.edu/library/etda-workflow

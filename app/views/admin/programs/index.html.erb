@@ -1,22 +1,21 @@
 <div class="row">
-  <div class="col-xs-9 col-sm-9">
+  <div class="col-sm-10">
     <h1><%= current_partner.program_label.pluralize %></h1>
   </div>
-  <div class="col-xs-3 col-sm-3">
-    <%= link_to "<span class='glyphicon glyphicon-plus'></span> #{current_partner.program_label}".html_safe, new_admin_program_path, class: 'btn btn-sm btn-default add-button pull-right' %>
+  <div class="float-right">
+    <%= link_to "<span class='fa fa-plus'></span> #{current_partner.program_label}".html_safe, new_admin_program_path, class: 'btn btn-sm btn-light add-button' %>
   </div>
 </div>
+<br/>
 
-<table id="programs-index" class="table table-striped datatable" data-ajax-url="<%= admin_programs_path %>">
-  <div class="pull-right">
-    <span><label for="starts-with_check">Match names beginning with: </label><input id="starts-with_check", type="checkbox" /></span>
-  </div>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Code</th>
-      <th>Active?</th>
-    </tr>
-  </thead>
-
-</table>
+<div class="col-sm-12">
+  <table id="programs-index" class="table table-striped datatable" data-ajax-url="<%= admin_programs_path %>">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Code</th>
+        <th>Active?</th>
+      </tr>
+    </thead>
+  </table>
+</div>

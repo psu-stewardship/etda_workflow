@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-sm-12">
     <h1><%= @submission.degree_type %> Audit</h1>
 
     <div class="submission_info">
@@ -35,7 +35,7 @@
     </div>
 
     <div class="row">
-      <div class="col-xs-12 col-sm-9">
+      <div class="col-xs-12 col-sm-12">
         <h3>Committee Member Reviews</h3>
       </div>
       <br />
@@ -55,7 +55,7 @@
             <td><%= member.name %></td>
             <td><%= member.committee_role.name %></td>
             <td><%= member.status ? member.status.capitalize : nil %></td>
-            <td class="approved-at-column"><%= member.approved_at ? member.approved_at.strftime("%B %d, %Y %I:%M %p") : nil %></td>
+            <td><%= member.approved_at ? member.approved_at.strftime("%B %d, %Y %I:%M %p") : nil %></td>
             <td><%= member.notes %></td>
           </tr>
         <% end %>

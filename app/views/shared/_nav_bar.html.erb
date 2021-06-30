@@ -1,38 +1,34 @@
 <nav id="account-navigation" class="navbar navbar-default" role="navigation" aria-labelledby="top-navigation">
-  <div class="container">
-    <div class="row">
-      <div id=top-navigation class="col-sm-6">
-        <ul class="list-inline navbar-list">
-          <li class= "<%= top_nav_active?('main') %>">
-            <%= link_to 'Home', main_page_path, class: 'btn btn-sm navbar-btn' %>
-          </li>
-          <li class="<%= top_nav_active?('about') %>">
-            <%= link_to 'About', about_page_path, class: 'btn btn-sm navbar-btn' %>
-          </li >
-          <% if session[:user_role] == 'author' || session[:user_role] == 'approver' %>
-            <li class="<%= top_nav_active?('email') %>">
-              <%= link_to 'Contact Us', email_contact_form_new_path, class: 'btn btn-sm navbar-btn ' %>
-            </li>
-          <% end %>
-          <% unless (controller_name == 'application' && action_name == 'main') || current_partner.sset? %>
-            <li>
-              <%= link_to 'Explore', EtdUrls.new.explore, class: 'btn btn-sm navbar-btn' %>
-            </li>
-          <% end  %>
-        </ul>
-      </div>
+  <div id=top-navigation class="col-sm-6">
+    <ul class="list-inline navbar-list">
+      <li class= "<%= top_nav_active?('main') %>">
+        <%= link_to 'Home', main_page_path, class: 'btn btn-sm navbar-btn' %>
+      </li>
+      <li class="<%= top_nav_active?('about') %>">
+        <%= link_to 'About', about_page_path, class: 'btn btn-sm navbar-btn' %>
+      </li >
+      <% if session[:user_role] == 'author' || session[:user_role] == 'approver' %>
+        <li class="<%= top_nav_active?('email') %>">
+          <%= link_to 'Contact Us', email_contact_form_new_path, class: 'btn btn-sm navbar-btn ' %>
+        </li>
+      <% end %>
+      <% unless (controller_name == 'application' && action_name == 'main') || current_partner.sset? %>
+        <li>
+          <%= link_to 'Explore', EtdUrls.new.explore, class: 'btn btn-sm navbar-btn' %>
+        </li>
+      <% end  %>
+    </ul>
+  </div>
 
 
-      <div class="log-div">
-        <% unless controller_name == 'special_committee' %>
-          <% unless @current_remote_user || author_signed_in? || admin_signed_in? || approver_signed_in? %>
-            <%= link_to 'Log In', :login, class: "btn btn-sm navbar-btn" %>
-          <% else %>
-            <span class="navbar-text small hidden-xs">Logged in as <%= session[:user_name] || current_author.access_id %></span>
-            <%= link_to 'Log Out', :logout, class: "btn btn-sm navbar-btn" %>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
+  <div class="log-div">
+    <% unless controller_name == 'special_committee' %>
+      <% unless @current_remote_user || author_signed_in? || admin_signed_in? || approver_signed_in? %>
+        <%= link_to 'Log In', :login, class: "btn btn-sm navbar-btn" %>
+      <% else %>
+        <span class="navbar-text small hidden-xs">Logged in as <%= session[:user_name] || current_author.access_id %></span>
+        <%= link_to 'Log Out', :logout, class: "btn btn-sm navbar-btn" %>
+      <% end %>
+    <% end %>
   </div>
 </nav>

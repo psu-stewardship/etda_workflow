@@ -44,9 +44,13 @@ SimpleForm.setup do |config|
   config.wrappers :vertical_radio_and_checkboxes, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
     b.use :placeholder
-    b.use :label_input
-    b.use :error, wrap_with: { tag: 'span', class: 'help-block' }
-    b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+    b.use :label, class: 'control-label'
+
+    b.wrapper tag: 'div', class: 'col-sm-12 vertical-radios' do |ba|
+      ba.use :input
+      ba.use :error, wrap_with: { tag: 'span', class: 'help-block' }
+      ba.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+    end
   end
 
   config.wrappers :horizontal_form, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
@@ -119,9 +123,9 @@ SimpleForm.setup do |config|
     b.use :html5
     b.use :placeholder
 
-    b.use :label, class: 'control-label'
+    b.use :label, class: 'control-label col-sm-3'
 
-    b.wrapper tag: 'div', class: 'col-sm-6 funding-radios' do |ba|
+    b.wrapper tag: 'div', class: 'col-sm-12 vertical-radios' do |ba|
       ba.use :input
       ba.use :error, wrap_with: { tag: 'span', class: 'help-block' }
       ba.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }

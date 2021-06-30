@@ -1,21 +1,21 @@
 <% if filter[:path] %>
   <%= link_to filter[:path], id: filter[:id], class: 'panel panel-default filter' do %>
     <div class='panel-heading'>
-      <h2 class='panel-title'><%= filter[:title] %>
+      <h3 class='panel-title'><%= filter[:title] %>
         <% if sub_count = filter[:sub_count] %>
-          <span class='badge badge-right badge-mute pull-right'><%= filter[:count] %></span>
-          <span class='badge badge-left pull-right'><%= sub_count %></span>
+          <span class='badge badge-right badge-mute float-right'><%= filter[:count] %></span>
+          <span class='badge badge-left float-right'><%= sub_count %></span>
         <% else %>
-          <span class='badge pull-right'><%= filter[:count] %></span>
+          <span class='badge float-right'><%= filter[:count] %></span>
         <% end %>
-      </h2>
+      </h3>
     </div>
     <div class='panel-body'><%= filter[:description] %></div>
   <% end %>
 <% else %>
   <div id="<%= filter[:id] %>" class='panel panel-default no-submissions'>
     <div class='panel-heading'>
-      <h3 class='panel-title'><%= filter[:title] %> <span class='badge pull-right'>0</span></h3></div>
+      <h3 class='panel-title'><%= filter[:title] %> <span class='badge float-right'>0</span></h3></div>
     <div class='panel-body'><%= filter[:description] %></div>
   </div>
 <% end %>

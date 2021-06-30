@@ -1,56 +1,60 @@
-<div class="row">
-  <h1>Contact Us</h1>
-</div>
-<div class='row'>
-  <p>For assistance, please provide your contact information and a detailed message.
-    When your message is received, an administrator will contact you.</p>
-</div>
-<br>
-<%= simple_form_for @email_contact_form, url: :email_contact_form_index, validate: true do |f| %>
-  <div class="">
-    <div class="row">
-      <%= f.input :full_name,  required: true, label: 'Your Name', :input_html => {:style => 'width: 250px'} %>
-    </div>
-    <div class="row">
-      <%= f.input :email, required: true, label: 'Your Email', :input_html => {:style => 'width: 250px'} %>
-    </div>
-    <% if session[:user_role] == 'author' %>
-      <div class="row">
-        <%= f.input :psu_id, required: false, label: 'PSU ID Number',
-                    readonly: true, :input_html => {:style => 'width: 250px'} %>
-      </div>
-    <% end %>
-    <div class="row">
-      <p><%= f.label :issue_type %>
-        <a href="#">
-          <span class="fa fa-exclamation-circle" data-toggle="tooltip" data-placement="top" data-html="true" title="<%=  EmailContactForm.tooltip_message %>"></span>
-        </a>
-      </p>
-      <%= f.input :issue_type, required: true, label: false,
-                  collection: EmailContactForm.issue_types.to_a, value_method: :first, label_method: :second,
-                  selected: EmailContactForm.issue_types.to_a.first[0], input_html: { style: 'width: 225px;' } %>
-    </div>
-    <div class="row">
-      <%= f.input :desc, required: true, label: 'Subject', :input_html => {:style => 'width: 500px'} %>
-    </div>
-    <div class="row">
-      <%= f.input :message, required: true, as: :text, input_html: {rows: "8", cols: 80}, label: 'Your Message'  %>
-    </div>
-    <div class="row">
-      <%= f.submit value: "Send", class: 'btn btn-primary' %>
-      <% if session[:user_role] == 'approver' %>
-        <%= link_to 'Cancel', '/approver', class:  "btn btn-none" %>
-      <% else %>
-        <%= link_to 'Cancel', '/author', class:  "btn btn-none" %>
-      <% end %>
-    </div>
-
-    <span class="hidden">
-      <%= f.label :body, 'This field is to prevent spam and should be left blank.' %>
-      <%= f.text_field :body, as: :text, class: "invisible", value: "     " %>
-    </span>
+<div class="container-fluid contact-form">
+  <div class="row">
+    <h1>Contact Us</h1>
   </div>
-  <HEAD>
-     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE, NO-STORE">
-  </HEAD>
-<% end %>
+  <div class='row'>
+    <p>For assistance, please provide your contact information and a detailed message.
+      When your message is received, an administrator will contact you.</p>
+  </div>
+  <br>
+  <%= simple_form_for @email_contact_form, url: :email_contact_form_index, validate: true do |f| %>
+    <div class="">
+      <div class="row">
+        <%= f.input :full_name,  required: true, label: 'Your Name', :input_html => {:style => 'width: 250px'} %>
+      </div>
+      <div class="row">
+        <%= f.input :email, required: true, label: 'Your Email', :input_html => {:style => 'width: 250px'} %>
+      </div>
+      <% if session[:user_role] == 'author' %>
+        <div class="row">
+          <%= f.input :psu_id, required: false, label: 'PSU ID Number',
+                      readonly: true, :input_html => {:style => 'width: 250px'} %>
+        </div>
+      <% end %>
+      <div class="row">
+        <p><%= f.label :issue_type %>
+          <a href="#">
+            <span class="fa fa-exclamation-circle" data-toggle="tooltip" data-placement="top" data-html="true" title="<%=  EmailContactForm.tooltip_message %>"></span>
+          </a>
+        </p>
+      </div>
+      <div class="row">
+        <%= f.input :issue_type, required: true, label: false,
+                    collection: EmailContactForm.issue_types.to_a, value_method: :first, label_method: :second,
+                    selected: EmailContactForm.issue_types.to_a.first[0], input_html: { style: 'width: 225px;;' } %>
+      </div>
+      <div class="row">
+        <%= f.input :desc, required: true, label: 'Subject', :input_html => {:style => 'width: 500px'} %>
+      </div>
+      <div class="row">
+        <%= f.input :message, required: true, as: :text, input_html: {rows: "8", cols: 80}, label: 'Your Message'  %>
+      </div>
+      <div class="row">
+        <%= f.submit value: "Send", class: 'btn btn-primary' %>
+        <% if session[:user_role] == 'approver' %>
+          <%= link_to 'Cancel', '/approver', class:  "btn btn-none" %>
+        <% else %>
+          <%= link_to 'Cancel', '/author', class:  "btn btn-none" %>
+        <% end %>
+      </div>
+
+      <span class="hidden">
+        <%= f.label :body, 'This field is to prevent spam and should be left blank.', class: 'invisible' %>
+        <%= f.text_field :body, as: :text, class: "invisible", value: "     " %>
+      </span>
+    </div>
+    <HEAD>
+       <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE, NO-STORE">
+    </HEAD>
+  <% end %>
+</div>

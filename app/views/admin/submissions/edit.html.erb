@@ -1,36 +1,38 @@
-<h2><%= @view.title %></h2>
-<%= render partial: 'email_template_link', locals: { submission: @submission } %>
+<div class="col-sm-12">
+  <h1><%= @view.title %></h1>
+  <%= render partial: 'email_template_link', locals: { submission: @submission } %>
 
-<strong><%= "#{@view.withdraw_message}".html_safe %></strong>
-<%= render partial: 'shared/error_messages', locals: { object: @submission } %>
+  <strong><%= "#{@view.withdraw_message}".html_safe %></strong>
+  <%= render partial: 'shared/error_messages', locals: { object: @submission } %>
 
-<%= simple_form_for @submission, url: @view.form_for_url, html: { class: "admin-edit-submission #{@submission.status_class}" } do |f| %>
-  <div class="format">
-    <div class="form-section-body">
-      <%= f.input :title %>
-      <%= f.input :allow_all_caps_in_title, label: 'Allow completely upper-case words in title', wrapper: :checkbox %>
+  <%= simple_form_for @submission, url: @view.form_for_url, html: { class: "admin-edit-submission #{@submission.status_class}" } do |f| %>
+    <div class="format">
+      <div class="form-section-body">
+        <%= f.input :title %>
+        <%= f.input :allow_all_caps_in_title, label: 'Allow completely upper-case words in title', wrapper: :checkbox %>
+      </div>
+
+      <%= render 'admin/submissions/edit/author_information' %>
+
+      <%= render "admin/submissions/edit/standard_program_information", {f: f}  %>
+
+      <%= render "admin/submissions/edit/standard_committee_form", {f: f } %>
+
+      <%= render 'admin/submissions/edit/format_review_files', f: f %>
+    </div>
+    <div class="final">
+      <%= render 'admin/submissions/edit/final_submission_fields', f: f if @submission.status_behavior.beyond_waiting_for_format_review_response? %>
+
+      <%= render 'admin/submissions/edit/admin_notes', f: f %>
+    </div>
+    <div class="form-group actions">
+      <%= render partial: "admin/submissions/edit_form_actions/#{@view.actions_partial_name}", locals: { f: f } %>
+      <%= link_to "Cancel", @view.cancellation_path, class: 'btn btn-light' %>
+    </div>
+    <div>
+      <%= link_to "View Printable Audit", admin_submission_audit_path(@submission.id), class: 'link' %>
     </div>
 
-    <%= render 'admin/submissions/edit/author_information' %>
 
-    <%= render "admin/submissions/edit/standard_program_information", {f: f}  %>
-
-    <%= render "admin/submissions/edit/standard_committee_form", {f: f } %>
-
-    <%= render 'admin/submissions/edit/format_review_files', f: f %>
-  </div>
-  <div class="final">
-    <%= render 'admin/submissions/edit/final_submission_fields', f: f if @submission.status_behavior.beyond_waiting_for_format_review_response? %>
-
-    <%= render 'admin/submissions/edit/admin_notes', f: f %>
-  </div>
-  <div class="form-group actions">
-    <%= render partial: "admin/submissions/edit_form_actions/#{@view.actions_partial_name}", locals: { f: f } %>
-    <%= link_to "Cancel", @view.cancellation_path, class: 'btn cancel-link' %>
-  </div>
-  <div>
-    <%= link_to "View Printable Audit", admin_submission_audit_path(@submission.id), class: 'link' %>
-  </div>
-
-
-<% end %>
+  <% end %>
+</div>

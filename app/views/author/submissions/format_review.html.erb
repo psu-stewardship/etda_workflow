@@ -1,14 +1,14 @@
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-sm-12">
     <h1>Format Review Files</h1>
   </div>
 </div>
 <% @row_count = 0 %>
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-sm-12">
     <% if @submission.format_review_notes.present? %>
         <div id="format-review-notes" class="row <%= even_odd(@row_count) %>">
-          <div class="col-xs-12">
+          <div class="col-sm-12">
             <h2 class="h4">Format Review notes from the administrator</h2>
             <div class="alert alert-<%= @submission.status_behavior.beyond_waiting_for_format_review_response? ? 'info' : 'warning'  %>">
               <p><%= @submission.format_review_notes %></p>
@@ -33,7 +33,7 @@
   </div>
 </div>
 <div class="row <%= even_odd(@row_count) %>">
-  <div class="col-xs-12 review-group">
+  <div class="col-sm-12 review-group">
     <p><strong>
       <%= link_to 'Return to dashboard', author_root_path %>
       </strong> </p>

@@ -7,7 +7,10 @@ RSpec.describe "Step 7: Waiting for Final Submission Response'", js: true do
     end
 
     let!(:author) { current_author }
-    let!(:submission) { FactoryBot.create :submission, :waiting_for_final_submission_response, author: author, degree: degree }
+    let!(:submission) do
+      FactoryBot.create :submission, :waiting_for_final_submission_response, author: author, degree: degree
+    end
+    let!(:approval_configuration) { FactoryBot.create :approval_configuration, degree_type: submission.degree_type }
     let!(:degree) { FactoryBot.create :degree }
 
     context "visiting the 'Update Program Information' page" do

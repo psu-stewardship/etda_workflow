@@ -15,15 +15,14 @@ RSpec.configure do |config|
   end
 
   config.before(:each, js: true) do
-    DatabaseCleaner.strategy = :deletion, { except: %w[student_submissions] }
-    # #Capybara.page.driver.browser.url_blacklist = ["www.google-analytics.com"]
+    Capybara.current_driver = :selenium
+    DatabaseCleaner.strategy = :truncation
   end
 
   config.before do
     DatabaseCleaner.start
     DegreeType.seed
     CommitteeRole.seed
-    # load Rails.root.join('db/seeds/essential.seeds.rb')
   end
   config.after do
     DatabaseCleaner.clean

@@ -12,16 +12,18 @@
   <%= csrf_meta_tags %>
 </head>
 <body class='<%= page_classes %>'>
-<div id="body-container">
-  <%= render 'shared/header' %>
+
+<%= render 'shared/header' %>
+
+<div id="body-container" class="container-fluid">
   <main>
-    <div id="content-container" class="container">
-      <%= render partial: 'shared/flash_messages' unless flash.empty? %>
+    <div class="container-fluid">
       <div id="content-row" class="row">
-        <div class="col-xs-12 col-md-2">
+        <div class="col-sm-2">
           <%= render 'admin/shared/main_navigation' %>
         </div>
-        <div class="col-xs-12 col-md-10">
+        <div class="col-sm-8 content-main">
+          <%= render partial: 'shared/flash_messages' unless flash.empty? %>
 
           <%= yield %>
 

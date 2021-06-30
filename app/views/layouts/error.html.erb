@@ -14,10 +14,11 @@
 
 <body class="<%= page_classes %>">
 
-<div id="body-container">
-  <%= render 'shared/header' %>
-  <div class="container">
-    <div id="content-container" class="container">
+<%= render 'shared/header' %>
+
+<div id="body-container" class="container-fluid">
+  <div class="container-fluid">
+    <div id="content-container" class="container-fluid">
       <%= yield %>
     </div>
     <%= render partial: 'shared/site_footer' %>

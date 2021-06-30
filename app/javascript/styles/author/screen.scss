@@ -3,7 +3,13 @@
 #submissions {
   .submission {
     border-top: 1px solid $gray-lighter;
-    padding: 0px 15px;
+    border-bottom: 1px solid $gray-lighter;
+    border-left: 1px solid $gray-lighter;
+    border-right: 1px solid $gray-lighter;
+    border-radius: 10px;
+    padding-left: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 10px;
 
     .heading {
       // margin-bottom: 1em;
@@ -75,7 +81,7 @@
         vertical-align: top;
         line-height: 20px;
 
-        .glyphicon-ok-circle {
+        .fa-check-circle-o {
           vertical-align: bottom;
           font-size: 130%;
           color: $brand-success;
@@ -112,7 +118,7 @@
     .direction {
         position: relative;
         top: 3em;
-        left: -2.25em;
+        left: -2em;
         color: $gray-med-dark;
     }
 

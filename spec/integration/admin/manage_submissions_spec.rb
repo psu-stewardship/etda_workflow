@@ -24,7 +24,8 @@ RSpec.describe "Manage Submissions", js: true do
         click_button 'Select Visible'
         expect(page).to have_button('Delete selected')
         click_button('Delete selected')
-        # expect(page).to have_content('successfully')
+        page.driver.browser.switch_to.alert.accept
+        expect(page).to have_content('successfully')
         total_submissions = Submission.all.count
         expect(total_submissions).to eql(submission_count - 2)
       end
@@ -36,7 +37,8 @@ RSpec.describe "Manage Submissions", js: true do
         find(:css, "input.row-checkbox", match: :first).set(true)
         expect(page).to have_button('Delete selected')
         click_button('Delete selected')
-        # expect(page).to have_content('successfully')
+        page.driver.browser.switch_to.alert.accept
+        expect(page).to have_content('successfully')
         total_submissions = Submission.all.count
         expect(total_submissions).to eql(submission_count - 1)
       end

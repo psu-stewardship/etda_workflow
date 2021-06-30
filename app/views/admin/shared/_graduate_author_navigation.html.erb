@@ -1,10 +1,12 @@
-<a href="#" data-toggle="collapse" data-target="#authors_list" class="<%= admin_nav_active?('authors') %> caret-link dropdown" id='authors_menu'>
-  Authors<span class="caret caret-right authors author-buttons"></span></a>
-  <ul class='list-group dropdown-menu collapse caret-list' id="authors_list">
-    <li class='list-group-item'>
+<div class="dropdown">
+  <a href="#" data-toggle="collapse" data-target="#authors_list" class="btn btn-nav dropdown-toggle <%= admin_nav_active?('authors') %>" id='authors_menu'>
+  Authors</a>
+  <ul class='dropdown-menu' id="authors_list">
+    <li class='dropdown-item'>
       <%= link_to 'Authors List', admin_authors_path %>
     </li>
-    <li class='list-group-item'>
+    <li class='dropdown-item'>
       <%= link_to 'Email Contact List', admin_email_contact_list_path %>
     </li>
   </ul>
+</div>

@@ -76,30 +76,16 @@ module StubbedAuthenticationHelper
   # Call this method in your "before" block to be signed in as the given user
   # (pass in the entire user object, not just a username).
   def sign_in_as_author(author)
-    # Remove the session cookie for the original_owner
-    # to ensure we visit pages that belong to the new_owner
-    #     Capybara.page.driver.browser.remove_cookie '_etdflow_session'
-    Capybara.page.driver.browser.remove_cookie '_etdflow_author_session'
-    Capybara.current_session.driver.browser.set_cookie(name: '_etdflow_author_session', path: '/author')
     StubbedAuthenticationStrategy.author = author
     Warden::Strategies.add :oidc_authenticatable, StubbedAuthenticationStrategy
   end
 
   def sign_in_as_admin(admin)
-    # Remove the session cookie for the original_owner
-    # to ensure we visit pages that belong to the new_owner
-    Capybara.page.driver.browser.remove_cookie '_etdflow_admin_session'
-    Capybara.current_session.driver.browser.set_cookie(name: '_etdflow_admin_session', path: '/admin')
     StubbedAuthenticationStrategy.admin = admin
     Warden::Strategies.add :oidc_authenticatable, StubbedAuthenticationStrategy
   end
 
   def sign_in_as_approver(approver)
-    # Remove the session cookie for the original_owner
-    # to ensure we visit pages that belong to the new_owner
-    #     Capybara.page.driver.browser.remove_cookie '_etdflow_session'
-    Capybara.page.driver.browser.remove_cookie '_etdflow_approver_session'
-    Capybara.current_session.driver.browser.set_cookie(name: '_etdflow_approver_session', path: '/approver')
     StubbedAuthenticationStrategy.approver = approver
     Warden::Strategies.add :oidc_authenticatable, StubbedAuthenticationStrategy
   end

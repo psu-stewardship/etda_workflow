@@ -1,6 +1,6 @@
-<div class="content-container">
+<div class="col-sm-12 approver-index">
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-sm-12">
       <h1>My Reviews</h1>
       <p>The following table contains a list of your reviews.  To begin reviewing a submission, click the title of the submission below.  If you are serving on a committee as multiple roles, you will only need to submit your review once for that submission. To see your completed reviews, select "Finished Reviews" from the dropdown filter below.</p>
       <p>If you are not sure what to do, click the following link for a <a href='/docs'>walkthrough</a>.</p>
@@ -9,11 +9,15 @@
   </br>
 
   <div class="row">
-    <div id="approver-select-reviews" class="select-reviews">
+    <div class="select-reviews">
+      <p><strong>Filter by:</strong></p>
+      <div id="approver-select-reviews">
+      </div>
     </div>
-    <p class="pull-right"><strong>Filter by:</strong></p>
   </div>
-  <div>
+  <br/>
+
+  <div class="col-sm-12">
     <table id="approver-committees-index" class="approver-committees-index table table-striped datatable" data-ajax-url="<%= approver_root_path %>">
       <thead>
         <tr>

@@ -1,5 +1,4 @@
-
-<div class="flash_messages" role="alert" aria-labelledby="alert-message">
+<div class="col-sm-12" role="alert" aria-labelledby="alert-message">
   <% [:success, :notice, :error, :alert].each do |type| %>
     <%- alert_class = case type
                         when :success then "alert-success"

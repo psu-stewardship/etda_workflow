@@ -54,7 +54,7 @@ RSpec.describe "Editing a released submission as an admin", js: true do
         all('textarea').last.set("Bananas")
       end
 
-      page.find("#submission_access_level_restricted").trigger('click')
+      page.find("#submission_access_level_restricted").click
       inventions = page.find(:css, 'div.form-group.string.optional.submission_invention_disclosures_id_number')
       within inventions do
         fill_in 'Invention Disclosure Number (Required for Restricted Access)', with: '1234'

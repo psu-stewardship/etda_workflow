@@ -1,11 +1,11 @@
-<div class="lead inline-block">
+<div class="inline-block h4">
   <%= render partial: 'admin/shared/confidential_hold_information' if @author.confidential_hold? %>
   <strong>Access ID:   </strong><%= @author.access_id %>&nbsp;&nbsp;
   <strong>PSU ID:  </strong><%= @author.psu_idn || 'not available' %>&nbsp;&nbsp;
   <strong>PSU Email Address:  </strong><%= @author.psu_email_address %></strong>
 </div>
-<div class="form-section-heading author-submissions" data-toggle = 'collapse' data-target = '#collapseSubmissions'
-     aria-controls = '#collapseSubmissions' aria-expanded = false  >
+<div class="form-section-heading author-submissions" data-toggle='collapse' data-target='#collapseSubmissions'
+     aria-controls='#collapseSubmissions' aria-expanded = false  >
   <strong>Show Submissions</strong>
   <span class="hide-show-indicator"> </span>
 </div>

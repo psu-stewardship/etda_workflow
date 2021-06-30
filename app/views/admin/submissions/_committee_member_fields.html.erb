@@ -1,16 +1,20 @@
 <% disabled_bool = (current_partner.graduate? && f.object.lionpath_updated_at.present? && !f.object.external_to_psu_id.present? && !f.object.committee_role.is_program_head) %>
-<div class="nested-fields admin panel panel-default committee-member-information">
+<div class="nested-fields admin card border-default committee-member-information">
   <div class="status-row">
     <div class="col-sm-6">
       <%= f.association :committee_role,
                         collection: @submission.degree_type.try(&:committee_roles).order('name asc') || [] ,
                         disabled: disabled_bool, input_html: {class: 'role'} %>
     </div>
-    <%= link_to_remove_association "[ Remove Committee Member ]", f, class: 'text-danger remove-member'%>
+  <%= link_to_remove_association "[ Remove Committee Member ]", f, class: 'text-danger remove-member'%>
   </div>
-  <div class="row committee-details">
-    <%= f.input :name, disabled: disabled_bool, input_html: { class: 'ldap-lookup' } %>
-    <%= f.input :email %>
+  <div class="col-sm-10 committee-details">
+    <div class="status-row">
+        <%= f.input :name, disabled: disabled_bool, input_html: { class: 'ldap-lookup' } %>
+      <div class="col-sm-3">
+        <%= f.input :email %>
+      </div>
+    </div>
     <div class="status-row">
       <%= f.input :status, collection: Hash[CommitteeMember::STATUS.collect{ |item| [item, item.capitalize] }],
                   label_method: :last, value_method: :first,

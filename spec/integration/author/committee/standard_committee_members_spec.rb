@@ -332,10 +332,9 @@ RSpec.describe 'The standard committee form for authors', js: true do
     it 'has tooltip for added committee members' do
       click_on 'Add Committee Member'
       sleep 1
-      within '#add_member' do
-        find('.fa-exclamation-circle').hover
-        expect(page).to have_css('.tooltip')
-      end
+      tooltips = find_all('.fa-exclamation-circle')
+      tooltips.last.hover
+      expect(page).to have_css('.tooltip')
     end
   end
 

@@ -1,14 +1,14 @@
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-sm-12">
     <h1>Final Submission Files</h1>
   </div>
 </div>
 <% @row_count=0 %>
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-sm-12">
     <% if @submission.final_submission_notes.present? %>
       <div id="final-submission-notes" class="row <%= even_odd(@row_count) %>">
-        <div class="col-xs-12">
+        <div class="col-sm-12">
           <h2 class="h4">Final Submission notes from the administrator</h2>
           <div class="alert alert-<%= @submission.status_behavior.beyond_waiting_for_final_submission_response? ? 'info' : 'warning'  %>">
             <p><%= @submission.final_submission_notes %></p>
@@ -73,7 +73,7 @@
   </div>
 
   <div class="row" >
-    <div class="col-xs-12 review-group">
+    <div class="col-sm-12 review-group">
       <p><strong>
         <%= link_to 'Return to dashboard', author_root_path %>
         </strong></p>

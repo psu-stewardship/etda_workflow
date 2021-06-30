@@ -1,5 +1,3 @@
-// Base Color Palette
-//yarn add bootstrap@3
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/_variables';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/_type';
@@ -29,14 +27,55 @@ $state-danger-bg:  #f2dede !default;
 $state-danger-border:  darken(adjust-hue($state-danger-bg, -10), 5%) !default;
 $border-radius-large:  6px !default;
 
-
-// Bootstrap Variable Overrides
-
-$brand-primary: $medium-blue;
+$primary: $medium-blue-bright;
 $grid-float-breakpoint: 992px;
 
+label.control-label {
+  font-weight: bold;
+}
+
+a {
+  color: $primary;
+
+  .page-link {
+    color: $primary;
+  }
+}
+
+/* Override DataTables pagination color schemes */
+.page-item.active .page-link {
+  color: #fff !important;
+  background-color: $primary !important;
+  border-color: $primary !important;
+}
+.page-item.disabled .page-link {
+  color: #8c9094 !important;
+  background-color: #fff !important;
+  border-color: #d0d4d8 !important;
+}
+
+.page-link {
+  color: $primary !important;
+  background-color: #fff !important;
+  border: 1px solid #d0d4d8 !important;
+}
+
+.page-link:hover {
+  color: #fff !important;
+  background-color: $primary !important;
+  border-color: $primary !important;
+}
+
+.btn-primary {
+  background-color: $primary;
+  border-color: $primary;
+}
+
+.content-main {
+  padding-left: 50px;
+}
+
 html {
-  position: relative;
   min-height: 100%;
 }
 
@@ -45,27 +84,28 @@ header {
   margin-bottom: 40px;
 
   .navbar-default {
-    min-height: 30px;
-    top: 20px;
+    width: 100%;
 
     .navbar-text {
       color: #ffffff;
     }
   }
 
-
   #shield-and-logo img{
     margin: 0 auto;
   }
 
   #psu-shield img{
-    padding-top: 35px;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   #logo-old {
+    padding-top: 9px;
+    padding-left: 30px;
     a {
-      color: #fff;
-      font-size: $font-size-h1;
+      color: #ffffff;
+      font-size: $font-size-h3;
 
       &:hover {
         text-decoration: none;
@@ -74,17 +114,11 @@ header {
   }
 
   #account-navigation {
-    margin:0 auto;
-    max-width: 1175px;
-    border-radius: 0px;
-    border: 0px;
     background-color: $medium-blue-bright;
 
     .navbar-btn.btn-sm {
       color: #ffffff;
       font-size: $font-size-base;
-      padding: 0px;
-      border-radius: 0px;
 
       &:hover {
         color: #000000;
@@ -92,7 +126,6 @@ header {
     }
 
     .log-div {
-      padding-right: 20px;
       float: right;
     }
 
@@ -143,6 +176,8 @@ ul.navbar-list {
 
 #main-navigation {
   margin-top: 20px;
+  margin-right: 25px;
+  margin-left: 50px;
 
   .nav {
     padding-bottom: 20px;
@@ -174,8 +209,9 @@ footer {
   width: 100%;
   padding-top: 20px;
 
-  .navbar-default .navbar-nav > li > a {
+  .navbar-default .navbar-list > li > a {
     color: $blue-light;
+    margin-right: 6em;
 
     &:hover {
       color: #ffffff;
@@ -196,11 +232,10 @@ footer {
       margin-top: 9px;
     }
 
-    .version,
-    a {
-      padding-top: 10px;
-      padding-bottom: 10px;
-      padding-left: 1em;
+    .version {
+      padding-top: 4px;
+      margin-bottom: 15px;
+      float: right;
     }
   }
 }
@@ -252,6 +287,17 @@ form {
   }
 }
 
+.radio_buttons {
+  margin-right: 8px;
+}
+
+.boolean {
+  margin-right: 8px;
+}
+
+input[name="submission[access_level]"] {
+  margin-right: 8px;
+}
 
 .file-link {
   @extend .form-control;
@@ -349,7 +395,7 @@ form {
   }
 
   .committee-details {
-    width: 50%;
+    width: 100%;
     div {
       padding-right: 0px;
     }
@@ -372,11 +418,6 @@ form {
     margin-left: 200px;
   }
 
-  .admin {
-    border: 1px solid grey;
-    padding: 1em;
-  }
-
   a.remove_fields {
     margin-top: 2.5em;
     font-weight: bold;
@@ -388,6 +429,9 @@ textarea {
   max-width: 100%;
 }
 
+.admin {
+  margin-bottom: 20px;
+}
 
 .form-group.actions .btn {
   margin-bottom: 0.5em;
@@ -509,15 +553,30 @@ select.disabled {
 #main-navigation > ul > li{
   background-color: $medium-blue-bright;
   border-radius: $border-radius-large;
-  width: 95%;
-  margin: 0.5em auto;
+  width: 100%;
+  margin: 0.5em 0px 0px 0px;
 }
 
-.nav-pills > li.active > a, .nav-pills > li > a:hover, .nav-pills > li.active > a:hover {
+.btn-nav {
+  color: white;
+  width: 100%;
+}
+
+.dropdown-item{
+  background-color: white;
+}
+
+.nav-pills > li.active > a, .nav-pills > li > a:hover, .nav-pills > li.active > a:hover{
   background-color: $blue-light;
   color: $gray-dark;
 }
 
+.nav-pills {
+  .active {
+    background-color: $blue-light;
+    color: $gray-dark;
+  }
+}
 .home-text {
   color: $gray-med-dark;
 }
@@ -624,6 +683,9 @@ form.search-query-form .input-group {
 
 .flash_messages {
   padding-top: 1em;
+  width: 100%;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
 
@@ -692,32 +754,36 @@ a.cancel-link{
   padding-bottom: 10px;
 }
 
-#main-page{
-  margin-top: 20px;
-}
-
 .top-container{
   padding-bottom: 20px;
 }
 
-#admin-col{
-  margin-left: 3rem;
+.author-col{
+  margin-left: 25%;
+  margin-right: 2%;
+}
+
+.admin-col{
   background-color: #000000;
   border-radius: 5px;
+  margin-top: 60px;
+  padding-bottom: 50px;
+  padding-left: 35px;
+  padding-top: 20px;
+  width: 285px;
 }
 
-#admin-box {
-  padding-left: 20px;
-  padding-bottom: 30px;
-}
-
-#admin-box > li {
-  padding-left: 30px;
+.admin-box > li {
+  padding-left: 22px;
   list-style-type: none;
 }
 
-#admin-box > div {
+.admin-box > div {
   color: white;
+}
+
+.about-page {
+  margin-left: 8%;
 }
 
 .submission_info {
@@ -765,15 +831,23 @@ a.cancel-link{
 }
 
 #committee_member_table_audit {
-  width: 80%;
+  width: 100%;
 }
 
 .submission_committee_members_federal_funding_used {
   display: flex;
+
+  .radio {
+    margin-right: 10px;
+  }
 }
 
-.funding-radios {
-    margin-left: 10px;
+.vertical-radios {
+  padding-left: 0px;
+
+  span {
+    display: block;
+  }
 }
 
 //Docs page styles
@@ -788,16 +862,27 @@ a.contact-support-link {
   padding-bottom: 20px;
 }
 
-.approved-at-column {
-  width: 100px;
-}
-
 // Approver styles
 .select-reviews {
-  float: right;
-  margin:0 20px 10px 0;
+  margin-left: 25px;
+}
+
+.approver-review {
+  margin-left: 25%;
 }
 
 #approver-committees-index span {
   display:none;
+}
+
+.approver-index {
+  margin-left: 25%;
+}
+
+.contact-form {
+  margin-left: 17%;
+}
+
+.special-committee {
+  margin-left: 25%
 }

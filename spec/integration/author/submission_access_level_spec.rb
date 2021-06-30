@@ -20,18 +20,18 @@ RSpec.describe 'Author submission access_level', js: true do
     unless current_partner.milsch?
       it 'has an open_access radio button' do
         expect(page).not_to have_content('Access Level for this paper:')
-        page.find("input#submission_access_level_open_access").trigger('click')
+        page.find("input#submission_access_level_open_access").click
         expect(page.find("#submission_access_level_open_access")).to be_checked
         expect(page).not_to have_content('Enter justification')
       end
       it 'has a restricted_to_institution radio button' do
-        page.find("input#submission_access_level_restricted_to_institution").trigger('click')
+        page.find("input#submission_access_level_restricted_to_institution").click
         expect(page.find("input#submission_access_level_restricted_to_institution")).to be_checked
         expect(page).not_to have_content('Enter justification')
         expect(page).not_to have_field('submission_invention_disclosures_attributes_0_id_number')
       end
       xit 'has a restricted radio button' do
-        page.find("input#submission_access_level_restricted").trigger('click')
+        page.find("input#submission_access_level_restricted").click
         expect(page.find("input#submission_access_level_restricted")).to be_checked
         expect(page).not_to have_content('Enter justification')
         expect(page).to have_field('submission_invention_disclosures_attributes_0_id_number')

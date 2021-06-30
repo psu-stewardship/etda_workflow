@@ -1,11 +1,12 @@
 
-    <p>
-    <p><%= t("#{current_partner.id}.committee.list.#{@submission.degree_type.slug}.help_text").html_safe %></p>
+<p><%= t("#{current_partner.id}.committee.list.#{@submission.degree_type.slug}.help_text").html_safe %></p>
 
-    <% if current_partner.graduate? %>
-      <p><span class="text-info"><strong>Notice:</strong></span> <%= t("#{current_partner.id}.committee.list.#{@submission.degree_type.slug}.notice").html_safe %></p>
-    <% end %>
-    <%= simple_form_for @submission,
+<% if current_partner.graduate? %>
+  <p><span class="text-info"><strong>Notice:</strong></span> <%= t("#{current_partner.id}.committee.list.#{@submission.degree_type.slug}.notice").html_safe %></p>
+<% end %>
+<br/>
+<div class="col-sm-11 content-main">
+  <%= simple_form_for @submission,
                         url:  author_submission_committee_members_path(@submission) do |submission_form| %>
       <%= submission_form.simple_fields_for :committee_members do |committee_member_form| %>
         <%= render partial: 'committee_member_fields', locals: { f: committee_member_form } %>
@@ -16,9 +17,9 @@
 
     <div class="form-group actions">
       <div class="col-xs-12 col-sm-6 col-md-4">
-        <span class='glyphicon glyphicon-plus'> </span>
+        <span class='fa fa-plus'> </span>
         <%= link_to_add_association @presenter.add_member_label, submission_form, :committee_members,
-              class: 'btn btn-sm btn-default',
+              class: 'btn btn-sm btn-light',
               data: { association_insertion_node: '#add_member', association_insertion_method: 'append' } %>
 
       </div>
@@ -26,8 +27,8 @@
       <div class="col-xs-12 col-xs-10 col-sm-9">
         <%= submission_form.button :submit, class: "btn-primary", value: "Save and Continue Editing" %>
         <%= submission_form.button :submit, class: "btn-primary btn-success", value: "Save and Continue Submission" %>
-        <%= link_to "Cancel", author_root_path, class: 'btn cancel-link'%>
+        <%= link_to "Cancel", author_root_path, class: 'btn btn-light'%>
       </div>
-
-
   <% end %>
+  </div>
+

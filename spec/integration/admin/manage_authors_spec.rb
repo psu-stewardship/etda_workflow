@@ -52,7 +52,7 @@ RSpec.describe "Manage Authors", js: true do
     expect(page).to have_field('Country', with: author1.country)
     expect(page).to have_field('Alternate email address', with: author1.alternate_email_address)
     expect(page).to have_field('Display your alternate email address on your eTD document summary page?') if current_partner.graduate?
-    page.find('div.form-section-heading').trigger('click')
+    page.find('div.form-section-heading').click
     expect(page).to have_link(submission1.title.to_s)
     expect(page).to have_content('released for publication')
     expect(page).to have_link(submission2.title.to_s)

@@ -1,16 +1,11 @@
 <%= simple_form_for [:admin, @approval_configuration] do |f| %>
-  <div class="row">
-    <div class="col-sm-12">
-      <%= f.input :approval_deadline_on, wrapper_html: { class: 'hide' } %>
-    </div>
-  </div>
-
+  <br/>
   <p><span class="text-info"><strong>Help: </strong></span>In the form below you may select the method in which submissions are approved by the committee.  Selecting 'Percentage of approvals' allows you to input the percentage of committee members that must approve for the submission to proceed.  Selecting 'Number of rejections' allows you to input the number of committee member rejections that are permitted for the submission to still proceed.</p>
   </br>
 
   <div class="row">
-    <div class="col-sm-12">
-      <%= f.label :use_percentage, 'Committee approval method' %>
+    <div class="col-sm-4">
+      <%= f.label :use_percentage, '<strong>Committee approval method</strong>'.html_safe %>
       <%= f.input :use_percentage, as: :radio_buttons,
                   collection: [['Percentage of approvals', true], ['Number of rejections', false]],
                   wrapper: :vertical_radio_and_checkboxes,
@@ -25,10 +20,10 @@
   </div>
 
   <% if current_partner.graduate? || current_partner.sset? %>
+    <%= f.label :email_admins, '<strong>Require approval from head of graduate program?</strong>'.html_safe %>
+    <p class="hint">*After the committee approves, the head of the graduate program must then approve for the submission to proceed.</p>
     <div class="row">
-      <div class="col-sm-12">
-      <%= f.label :email_admins, 'Require approval from head of graduate program?' %>
-      <p class="hint">*After the committee approves, the head of the graduate program must then approve for the submission to proceed.</p>
+      <div class="col-sm-3">
       <%= f.input :head_of_program_is_approving, as: :radio_buttons,
                   collection: [['Yes', true], ['No', false]],
                   wrapper: :vertical_radio_and_checkboxes,
@@ -37,20 +32,20 @@
     </div>
   <% end %>
 
+  <%= f.label :email_admins, '<strong>Email admins</strong>'.html_safe %>
   <div class="row">
-    <div class="col-sm-12">
-      <%= f.label :email_admins, 'Email admins' %>
-      <p class="hint">*Allow emails to be sent to admins when a committee rejects a submission.</p>
+    <div class="col-sm-3">
       <%= f.input :email_admins, as: :radio_buttons,
                    collection: [['Yes', true], ['No', false]],
                    wrapper: :vertical_radio_and_checkboxes,
                    label: false %>
     </div>
   </div>
+
+  <%= f.label :email_authors, '<strong>Email authors</strong>'.html_safe %>
+  <p class="hint">*Allow emails to be sent to authors when a committee rejects or approves their submission.</p>
   <div class="row">
-    <div class="col-sm-12">
-      <%= f.label :email_authors, 'Email authors' %>
-      <p class="hint">*Allow emails to be sent to authors when a committee rejects or approves their submission.</p>
+    <div class="col-sm-3">
       <%= f.input :email_authors, as: :radio_buttons,
                   collection: [['Yes', true], ['No', false]],
                   wrapper: :vertical_radio_and_checkboxes,

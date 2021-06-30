@@ -1,40 +1,40 @@
 <div class="row">
-  <div class="col-xs-14 col-sm-12">
-    <div id="main-navigation" class="" role="navigation" aria-labelledby="admin-nav">
-      <ul id="admin-nav" class="nav nav-pills nav-stacked">
-        <% DegreeType.all.each do |dt| %>
-          <li class="<%= admin_degree_active?(params[:degree_type], dt) %>">
-            <%= link_to dt.name.pluralize, admin_submissions_dashboard_path(dt.slug) %>
-          </li>
-        <% end %>
-        <li class="<%= admin_nav_active?('authors') %>">
-          <%= render partial: 'admin/shared/author_navigation.html' %>
+  <div id="main-navigation" role="navigation" aria-labelledby="admin-nav">
+    <ul class="nav nav-pills nav-stacked">
+      <% DegreeType.all.each do |dt| %>
+        <li class="<%= admin_degree_active?(params[:degree_type], dt) %>">
+          <%= link_to dt.name.pluralize, admin_submissions_dashboard_path(dt.slug), {class: 'btn btn-nav'} %>
         </li>
-        <li class="<%= admin_nav_active?('programs') %>">
-          <%= link_to 'Programs', admin_programs_path %>
-        </li>
-        <li class="<%= admin_nav_active?('degrees') %>">
-          <%= link_to 'Degrees', admin_degrees_path %>
-        </li>
-        <li class="<%= admin_nav_active?('reports') %>">
-          <a href="#" data-toggle="collapse" data-target="#reports_list" class=" caret-link dropdown <%= admin_nav_active?('reports') %>" id='reports_menu'>
-            Reports<span class="caret caret-right reports"></span></a>
-          <ul class='list-group dropdown-menu caret-list report-buttons collapse' id="reports_list">
-            <li class="list-group-item">
+      <% end %>
+      <li class="<%= admin_nav_active?('authors') %>">
+        <%= render partial: 'admin/shared/author_navigation.html' %>
+      </li>
+      <li class="<%= admin_nav_active?('programs') %>">
+        <%= link_to 'Programs', admin_programs_path, {class: 'btn btn-nav'} %>
+      </li>
+      <li class="<%= admin_nav_active?('degrees') %>">
+        <%= link_to 'Degrees', admin_degrees_path, {class: 'btn btn-nav'} %>
+      </li>
+      <li class="<%= admin_nav_active?('reports') %>">
+        <div class="dropdown">
+          <a href="#" data-toggle="collapse" data-target="#reports_list" class="btn btn-nav dropdown-toggle <%= admin_nav_active?('reports') %>" id='reports_menu'>
+            Reports</a>
+          <ul class='dropdown-menu' id="reports_list">
+            <li class="dropdown-item">
               <%= link_to 'Custom Report', admin_custom_report_index_path, id: 'custom_report' %>
             </li>
-            <li class="list-group-item">
+            <li class="dropdown-item">
               <%= link_to 'Confidential Hold Report', admin_confidential_hold_report_index_path, id: 'confidential_hold_report' %>
             </li>
           </ul>
-        </li>
-        <li class="<%= admin_nav_active?('approval_configurations') %>">
-          <%= link_to 'Approval Configuration', admin_approval_configurations_path %>
-        </li>
-        <li>
-          <%= link_to 'FAQ', 'https://sites.psu.edu/etdinfo/', target: :_blank %>
-        </li>
-      </ul>
-    </div>
+        </div>
+      </li>
+      <li class="<%= admin_nav_active?('approval_configurations') %>">
+        <%= link_to 'Approval Configuration', admin_approval_configurations_path, {class: 'btn btn-nav'} %>
+      </li>
+      <li>
+        <%= link_to 'FAQ', 'https://sites.psu.edu/etdinfo/', {class: 'btn btn-nav', target: :_blank} %>
+      </li>
+    </ul>
   </div>
 </div>

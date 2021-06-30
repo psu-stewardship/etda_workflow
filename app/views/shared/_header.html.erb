@@ -1,17 +1,23 @@
 <header class="<%= page_classes %>" >
-  <div id="shield-and-logo">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-4">
-          <a id="psu-shield" href="http://libraries.psu.edu/">
-            <%= image_tag("#{asset_pack_path 'media/images/PS_UL_REV_RGB_2C.png'}", alt: "PSU Libraries logo", width: '200', height: '90' ) %>
-          </a>
-        </div>
-        <div class="col-sm-8">
-        <span id="logo-old">
-          <a href="/"><%= image_tag("#{asset_pack_path "media/images/#{header_image}"}", alt: I18n.t("#{current_partner.id}.header.title").to_s, width: '475', height: '100' ) %></a>
-        </span>
-        </div>
+  <div class="container-fluid">
+    <div id="shield-and-logo" class="row">
+      <div class="col-sm-1">
+        <a id="psu-shield" href="http://libraries.psu.edu/">
+          <%= image_tag("#{asset_pack_path 'media/images/PS_UL_REV_RGB_2C.png'}", alt: "PSU Libraries logo", width: '120', height: '55' ) %>
+        </a>
+      </div>
+      <div id="logo-old" class="col-sm-8">
+        <a href="/"><%=
+        if current_partner.graduate?
+          "Electronic Theses and Dissertations for The Graduate School"
+        elsif current_partner.honors?
+          "Electronic Honors Theses for The Schreyer's Honors College"
+        elsif current_partner.milsch?
+          "Electronic Theses for The Millennium Scholars Program"
+        elsif current_partner.sset?
+          "World Campus Electronic Final Papers for The School of Science, Engineering, and Technology"
+        end %>
+            </a>
       </div>
     </div>
   </div>

@@ -3,6 +3,8 @@ RSpec.describe 'Author submission review pages', type: :integration, js: true do
 
   let!(:submission1) { FactoryBot.create :submission, :waiting_for_publication_release, author: current_author }
   let!(:submission2) { FactoryBot.create :submission, :waiting_for_committee_review, author: current_author }
+  let!(:approval_configuration1) { FactoryBot.create :approval_configuration, degree_type: submission1.degree_type }
+  let!(:approval_configuration2) { FactoryBot.create :approval_configuration, degree_type: submission2.degree_type }
   let(:invention_disclosures) { FactoryBot.create(:invention_disclosure, submission) }
   let(:committee_member1) { FactoryBot.create :committee_member, submission: submission1 }
   let(:committee_member2) { FactoryBot.create :committee_member, submission: submission1 }
@@ -22,7 +24,7 @@ Haec para/doca illi, nos admirabilia dicamus. Nobis aliter videtur, recte secusn
     submission1.committee_members << committee_member2
     submission1.access_level = 'restricted'
     submission1.invention_disclosure.id_number = '1234'
-    submission1.restricted_notes = long_note + long_note + long_note + long_note + long_note + long_note + long_note
+    submission1.restricted_notes = long_note
     submission1.format_review_files << format_review_file
     submission1.final_submission_files << final_submission_file
     submission1.save
@@ -75,8 +77,9 @@ Haec para/doca illi, nos admirabilia dicamus. Nobis aliter videtur, recte secusn
       num_windows = page.driver.browser.window_handles.count
       within(format_review_section) do
         format_link = page.find("a.file-link")
-        format_link.trigger('click')
+        format_link.click
       end
+      sleep 0.1
       expect(page.driver.browser.window_handles.count).to eql(num_windows + 1)
     end
   end
@@ -94,9 +97,8 @@ Haec para/doca illi, nos admirabilia dicamus. Nobis aliter videtur, recte secusn
       expect(page).to have_content(submission1.current_access_level.label)
       expect(page).to have_content(submission1.final_submission_files.first.asset.identifier)
       expect(page).to have_content(submission1.invention_disclosures.first.id_number)
-      # TODO: find out why capybara 3 doesn't match this
-      # expect(page).to have_content(submission1.restricted_notes)
-      expect(page).to have_content(long_note + long_note + long_note + long_note + long_note + long_note + long_note)
+      expect(page).to have_content(submission1.abstract)
+      expect(page).to have_content("Lorem ipsum dolor sit amet")
       expect(page).to have_link('Return to dashboard')
       final_file_id = "final-submission-file-#{submission1.final_submission_files.first.id}"
       final_div = "div#" + final_file_id
@@ -104,8 +106,9 @@ Haec para/doca illi, nos admirabilia dicamus. Nobis aliter videtur, recte secusn
       num_windows = page.driver.browser.window_handles.count
       within(final_submission_section) do
         final_link = page.find("a.file-link")
-        final_link.trigger('click')
+        final_link.click
       end
+      sleep 0.1
       expect(page.driver.browser.window_handles.count).to eql(num_windows + 1)
     end
   end

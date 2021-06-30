@@ -381,8 +381,8 @@ RSpec.describe Admin::SubmissionFormView do
       it 'displays format-review-files section' do
         submission = FactoryBot.create :submission, status: 'waiting for format review response'
         view = described_class.new(submission, session)
-        expect(view.form_section_heading('format-review-files')).to eql("class='form-section-heading collapse in'")
-        expect(view.form_section_body('format-review-files')).to eql("class='form-section-body collapse in'")
+        expect(view.form_section_heading('format-review-files')).to eql("class='form-section-heading collapse show'")
+        expect(view.form_section_body('format-review-files')).to eql("class='form-section-body collapse show'")
       end
       it 'does not display committee information' do
         submission = FactoryBot.create :submission, status: 'waiting for format review response'
@@ -396,8 +396,8 @@ RSpec.describe Admin::SubmissionFormView do
       it 'displays format-review-files section' do
         submission = FactoryBot.create :submission, status: 'waiting for final submission response'
         view = described_class.new(submission, session)
-        expect(view.form_section_heading('final-submission-files')).to eql("class='form-section-heading collapse in'")
-        expect(view.form_section_body('final-submission-files')).to eql("class='form-section-body collapse in'")
+        expect(view.form_section_heading('final-submission-files')).to eql("class='form-section-heading collapse show'")
+        expect(view.form_section_body('final-submission-files')).to eql("class='form-section-body collapse show'")
       end
       it 'does not display committee information' do
         submission = FactoryBot.create :submission, status: 'waiting for final submission response'

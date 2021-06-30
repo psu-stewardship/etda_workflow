@@ -1,7 +1,7 @@
 <% lionpath_import = f.object.lionpath_updated_at.present? %>
 <% if lionpath_import %>
 <br />
-<div class="col-xs-12">
+<div class="col-sm-12">
   <div class="alert alert-info">
     <p class="hint">Program information is imported from LionPATH.</p>
     <p class="hint">Please review and contact your program office with any discrepancies.</p>
@@ -13,27 +13,25 @@
   </div>
 </div>
 <% end %>
-<div class="row col-xs-12">
+<div class="row col-sm-12">
   <%= f.input :program_id, label: "#{current_partner.program_label}",
               collection: Program.where(is_active: true).order('name ASC'),
               prompt: "Please Select a  #{current_partner.program_label}",
               required: true, disabled: lionpath_import %>
 </div>
-<div class="row col-xs-12">
+<div class="row col-sm-12">
   <div id="degree">
     <%= f.input :degree_id, label: 'Degree',
                 collection: Degree.where(is_active: true).order('description ASC').map{|d| [d.description, d.id]},
                 required: true, prompt: "Please Select a Degree", disabled: lionpath_import %>
   </div>
 </div>
-<div class="row">
-</div>
-<div class="row col-xs-12">
+<div class="row col-sm-12">
   <%= f.input :semester, label: 'Semester Intending to Graduate',
               collection: Semester::SEMESTERS, prompt: "Please Select",
               required: true, disabled: lionpath_import %>
 </div>
-<div class="row col-xs-12">
+<div class="row col-sm-12">
   <%= f.input :year, label: 'Graduation Year',
               collection: Semester.graduation_years, prompt: "Please Select",
               required: true, disabled: lionpath_import %>

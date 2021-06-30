@@ -1,15 +1,16 @@
-<div id="main-page" class="col-sm-12">
-  <div id="content-container" class="nav nav-pills">
-    <div id="content-container" class="h2">Already have or created a Penn State OneID account?</div>
-    <li><%= link_to "Proceed to ETD My Reviews Page", { controller: :special_committee, action: :advance_to_reviews }, method: :post, class: "btn btn-main" %></li>
+<div id="special-committee" class="special-committee">
+  <div >
+    <div  class="h2">Already have or created a Penn State OneID account?</div>
+    <br/>
+    <p><%= link_to "Proceed to ETD My Reviews Page", { controller: :special_committee, action: :advance_to_reviews }, method: :post, class: "btn btn-main" %></p>
   </div>
 </br>
-  <div id="content-container" class="nav nav-pills">
+  <div>
     <div class="h2">New to Penn State?</div>
     <p class="hint">You must create a Penn State OneID account, which is your digital identity to authenticate and approve of ETDs.</p>
     <p class="hint">New accounts can take up to 60 minutes to become active.</p>
     <p class="hint">If you previously had an account, please recover your Penn State Account here: <a href="https://accounts.psu.edu/create/recover">PSU Account Recovery</a></p>
     </br>
-    <li><%= link_to "Create Your Penn State Account", "https://accounts.psu.edu/create/new", target: :_blank, class: "btn btn-main" %></li>
+    <p><%= link_to "Create Your Penn State Account", "https://accounts.psu.edu/create/new", target: :_blank, class: "btn btn-main" %></p>
   </div>
 </div>

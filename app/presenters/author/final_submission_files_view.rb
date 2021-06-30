@@ -13,7 +13,7 @@ class Author::FinalSubmissionFilesView
     return '' if current_partner.milsch?
     return '' if @record.access_level.restricted?
 
-    'hidden'
+    'd-none'
   end
 
   def selected_access_level

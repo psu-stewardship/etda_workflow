@@ -25,9 +25,9 @@ RSpec.describe Author::FinalSubmissionFilesView do
       it 'returns hidden class' do
         unless current_partner.milsch?
           submission.access_level = 'open_access'
-          expect(view.disclosure_class).to eq('hidden')
+          expect(view.disclosure_class).to eq('d-none')
           submission.access_level = 'restricted_to_institution'
-          expect(view.disclosure_class).to eq('hidden')
+          expect(view.disclosure_class).to eq('d-none')
         end
       end
     end

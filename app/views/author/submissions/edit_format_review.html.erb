@@ -3,12 +3,13 @@
     <h1>Upload Format Review Files</h1>
   </div>
 </div>
+<br/>
 
 <div class="row">
   <div class="col-xs-12">
     <%= simple_form_for [:author, @submission], url: author_submission_update_format_review_path do |f| %>
       <% if @submission.format_review_notes.present? %>
-          <div id="format-review-notes" class="row">
+          <div id="format-review-notes" class="col-sm-12">
             <div class="col-xs-12">
               <label>Format Review notes from the administrator</label>
               <div class="alert alert-<%= @submission.status_behavior.beyond_waiting_for_format_review_response? ? 'info' : 'warning'  %>">
@@ -34,14 +35,16 @@
                                       data: { association_insertion_node: '#format-review-file-fields', association_insertion_method: 'append' },
                                       form_name: 'file_fields',
                                       partial: '/author/submissions/file_fields' do %>
-           <span class="glyphicon glyphicon-plus"></span> Additional File
+           <span class="fa fa-plus"></span> Additional File
           <% end %>
       </div>
 
+      <br/>
+
       <div class="form-group actions">
         <div class="col-xs-12 col-sm-6 col-md-8">
-          <%= f.button :submit, class: "btn-primary", value: "Submit files for review" %>
-          <%= link_to "Cancel", author_root_path , class: 'btn cancel-link'%>
+          <%= f.button :submit, class: "btn-success", value: "Submit files for review" %>
+          <%= link_to "Cancel", author_root_path , class: 'btn btn-light'%>
         </div>
       </div>
     <% end %>

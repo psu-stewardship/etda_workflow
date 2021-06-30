@@ -1,21 +1,19 @@
-<div id="main-page" class="col-sm-12">
-  <div class="col-sm-8">
-    <div id="body-container" class="top-container">
-      <div id="content-container" class="h2"><h2>Are you a student that needs to submit their work?</h2></div>
-      <%= link_to "Create/Edit Submissions", author_submissions_path, class: "btn btn-main" %>
-    </div>
-    <div id="body-container">
-      <div id="content-container" class="h2"><h2>Want to explore published submissions?</h2></div>
-      <%= render partial: 'main/explore_button' %>
+<div class="author-col">
+  <div id="body-container" class="top-container">
+    <div id="content-container" class="h2"><h2>Are you a student that needs to submit their work?</h2></div>
+    <%= link_to "Create/Edit Submissions", author_submissions_path, class: "btn btn-main" %>
+  </div>
+  <div id="body-container">
+    <div id="content-container" class="h2"><h2>Want to explore published submissions?</h2></div>
+    <%= render partial: 'main/explore_button' %>
+  </div>
+</div>
+
+<% unless admin? == false || admin? == nil %>
+  <div>
+    <div class="admin-col admin-box">
+      <div id="content-container" class="h2"><h2>Administrators:</h2></div>
+      <li><%= link_to "Admin Dashboard", admin_root_path, class: "btn btn-gold"%></li>
     </div>
   </div>
-
-  <% unless admin? == false || admin? == nil %>
-    <div id="admin-col" class="col-sm-3">
-      <div id="admin-box">
-        <div id="content-container" class="h2"><h2>Administrators:</h2></div>
-        <li><%= link_to "Admin Dashboard", admin_root_path, class: "btn btn-gold"%></li>
-      </div>
-    </div>
-  <% end %>
-</div>
+<% end %>

@@ -15,15 +15,15 @@
 
 <body class='<%= page_classes %>'>
 
-<div id="body-container">
+<%= render 'shared/header' %>
 
-  <%= render 'shared/header' %>
+<div id="body-container" class="container-fluid">
   <main>
-    <div id="content-container" class="container">
+    <div id="content-container" class="container-fluid">
       <%= render partial: 'shared/flash_messages' unless flash.empty? %>
-      <div id="content-row" class="row">
+      <div class="col-xs-12 col-sm-8">
 
-          <%= yield %>
+        <%= yield %>
 
       </div>
     </div>

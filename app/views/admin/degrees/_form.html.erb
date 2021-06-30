@@ -8,7 +8,7 @@
               prompt: "Please Select" %>
   <%= f.input :is_active, as: :radio_buttons, label: 'Is active?', wrapper: :vertical_radio_and_checkboxes %>
   <div class="form-group actions col-xs-4">
-    <%= f.button :submit, "#{this_action} Degree"  %>
+    <%= f.button :submit, "#{this_action} Degree", { class: 'btn-primary' }  %>
     <%= link_to "Cancel", admin_degrees_path, class: 'admin btn cancel-link' %>
   </div>
 <% end %>

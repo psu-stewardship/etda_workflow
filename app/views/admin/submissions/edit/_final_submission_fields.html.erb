@@ -1,7 +1,7 @@
 <div class="form-section-heading" data-toggle="collapse" data-target="#final-submission-information">Final Submission Information
   <span class="hide-show-indicator fa-rotate-90"></span>
 </div>
-<div id="final-submission-information" class="form-section-body collapse in">
+<div id="final-submission-information" class="form-section-body collapse show">
 
   <%= render partial: 'admin/submissions/edit/release_date_history' %>
 
@@ -9,13 +9,13 @@
   <%= f.input :abstract, as: :text, label: 'Abstract<span class="required-asterisk">*</span>'.html_safe, input_html: { class: 'can-toggle-editability', rows: 10 } %>
 
   <div class="links cocoon-links">
-    <label>Keywords<span class="required">*</span></label>
+    <label><strong>Keywords<span class="required">*</span></strong></label>
     <%= link_to_add_association f, :keywords,
-                                class: 'btn btn-default btn-sm',
+                                class: 'btn btn-light btn-sm',
                                 data: {association_insertion_node: '#keyword-fields', association_insertion_method: 'append'},
                                 form_name: 'keyword_fields',
                                 partial: 'shared/keyword_fields' do %>
-      <span class="glyphicon glyphicon-plus"></span>Additional Keyword
+      <span class="fa fa-plus"></span>Additional Keyword
     <% end %>
   </div>
 
@@ -24,15 +24,16 @@
       <%= render 'shared/keyword_fields', keyword_fields: keyword %>
     <% end %>
   </div>
+  <br/>
 
   <%= f.input :access_level, as: :radio_buttons,
               collection: AccessLevel.display.map { |k| ["<strong> #{k[:label]} </strong> -- #{k[:description]} #{render partial: 'restricted_notes', locals: {f: f} if @view.psu_only(k[:label])}".html_safe, k[:type], { class: "#{k[:type]}" }] },
               wrapper: :vertical_radio_and_checkboxes,
-              label: 'Access level<span class="required-asterisk">*</span>'.html_safe %>
+              label: '<strong>Access level<span class="required-asterisk">*</span></strong>'.html_safe %>
  <%= render partial: 'admin_invention_disclosure_information', locals: {f: f} %>
   
   <div class="links cocoon-links">
-    <label>Final Submission Files<span class="required-asterisk">*</span></label>
+    <label><strong>Final Submission Files<span class="required-asterisk">*</span></strong></label>
     <div id="final-submission-file-fields">
       <%= f.simple_fields_for :final_submission_files do |final_submission_file| %>
           <%= render 'admin/submissions/file_fields', file_fields: final_submission_file %>
@@ -43,7 +44,7 @@
         data: { association_insertion_node: '#final-submission-file-fields', association_insertion_method: 'append' },
         form_name: 'file_fields',
         partial: 'file_fields' do %>
-      <span class="glyphicon glyphicon-plus"></span> Additional File
+      <span class="fa fa-plus"></span> Additional File
     <% end %>
   </div>
   <%= render partial: '/shared/federal_funding_checkbox', locals: {f: f} %>

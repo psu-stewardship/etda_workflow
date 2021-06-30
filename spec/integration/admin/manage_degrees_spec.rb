@@ -16,7 +16,7 @@ RSpec.describe "Manage Degrees", js: true do
     degree2.degree_type_id = DegreeType.default.id
     expect(page).to have_link(degree.name)
     expect(page).to have_link(degree2.name)
-    click_link('New Degree')
+    find_link('New Degree').click
     expect(page).to have_button('Create Degree')
     fill_in 'Name', with: 'MArch'
     fill_in 'Description', with: 'Master of Architecture'
@@ -30,7 +30,7 @@ RSpec.describe "Manage Degrees", js: true do
       expect(page).to have_content(DegreeType.default.name)
       expect(page).to have_content('Yes')
     end
-    # expect(page).to have_content('Degree successfully created')
+    expect(page).to have_content('Degree successfully created')
     click_link 'MArch'
     expect(page).to have_content("Edit MArch")
     expect(page).to have_selector("input[value='Master of Architecture']")

@@ -17,7 +17,7 @@
       <div class="form-group actions col-xs-6">
         <%= form.button :submit, class: "btn-primary", value: "Update #{@submission.degree_type.to_s} Title" if current_partner.graduate? %>
         <%= form.button :submit, class: "btn-primary", value: "Update Program Information" unless current_partner.graduate? %>
-        <%= link_to "Cancel", author_root_path, class: 'btn cancel-link' %>
+        <%= link_to "Cancel", author_root_path, class: 'btn btn-light' %>
       </div>
     <% end %>
   </div>

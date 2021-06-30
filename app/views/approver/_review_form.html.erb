@@ -6,10 +6,12 @@
         <%=raw @most_relevant_file_links %></div>
       </br>
       <p>I accept and approve <%= @author.full_name %>'s <%= @submission.degree.degree_type.name.to_s.downcase %> and agree to distribution as indicated by the access level.</p>
+      <div class="col-sm-5">
       <%= f.input :status, as: :radio_buttons,
                   collection: [['Yes, I accept and approve.', 'approved'], ['No, I do not accept and approve.', 'rejected']],
                   wrapper: :vertical_radio_and_checkboxes,
                   label: false %>
+      </div>
       <%= f.input :notes, :label => "Notes for Student (optional)", :input_html => { :class => 'notes_select' } %>
       <% if current_partner.graduate? && @committee_member.committee_role.name.include?("Advisor") %>
         <%= f.input :federal_funding_used, as: :radio_buttons,
@@ -23,7 +25,7 @@
                     label: 'Were Federal Funds utilized for this submission?'.html_safe %>
       <% end %>
       <div class="form-group actions col-xs-4">
-        <%= f.button :submit, "Submit Review" %>
+        <%= f.button :submit, "Submit Review", class: 'btn-success' %>
         <% if @review_complete %>
           <%= render 'review_message' %>
         <% end %>

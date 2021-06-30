@@ -2,7 +2,7 @@
     local_presenter = Author::CommitteeMemberView.new(f.object) %>
 <% is_external_member = f.object.external_to_psu_id.present? %>
 <% disabled_bool = (current_partner.graduate? && f.object.lionpath_updated_at.present? && !is_external_member) %>
-<div class="nested-fields panel panel-default">
+<div class="nested-fields card card-committee">
   <div class="row committee-role">
   <% if local_presenter.required? %>
     <div class="col-sm-12">
@@ -75,3 +75,4 @@
     <% end %>
   </div>
 </div>
+<br/>

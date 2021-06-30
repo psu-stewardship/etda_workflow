@@ -162,7 +162,10 @@ RSpec.describe 'Step 1: Collecting Program Information status', js: true do
       if current_partner.graduate?
         expect(page).not_to have_link "delete"
       else
-        click_link("delete")
+        page.accept_confirm do
+          click_link("delete")
+        end
+        sleep 0.1
         expect(author.submissions.count).to eq(start_count - 1)
       end
     end

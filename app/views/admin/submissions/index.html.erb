@@ -1,11 +1,11 @@
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-sm-12">
     <h1><%= @view.title %></h1>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-sm-12">
     <div id="bulk-actions">
       <h5>Bulk Actions
         <span class="small"><span class="number-of-selected-rows"></span> submissions selected ( <span class="number-of-visible-selected-rows"></span> visible )</span>
@@ -25,11 +25,13 @@
   </div>
 </div>
 
-<table id="<%= @view.id %>" class="table table-striped admin-submissions-index datatable bulk-actions" data-ajax-url="<%= admin_submissions_index_path %>" data-default-semester="<%= @view.default_semester %>">
-  <strong><span class="record-count-top"> </span></strong>
-  <thead>
-  <tr>
-    <%= render partial: @view.table_header_partial_path %>
-  </tr>
-  </thead>
-</table>
+<div class="col-sm-12">
+  <table id="<%= @view.id %>" width="100%" class="table table-striped admin-submissions-index datatable bulk-actions" data-ajax-url="<%= admin_submissions_index_path %>" data-default-semester="<%= @view.default_semester %>">
+    <strong><span class="record-count-top"> </span></strong>
+    <thead>
+    <tr>
+      <%= render partial: @view.table_header_partial_path %>
+    </tr>
+    </thead>
+  </table>
+</div>

@@ -13,14 +13,13 @@
 </head>
 <body class="<%= page_classes %>">
 
-<div id="body-container">
-  <%= render 'shared/header' %>
+<%= render 'shared/header' %>
 
-  <%#= HERE IS WHERE login goes for author and one for Admin Users %>
+<div id="body-container" class="container-fluid">
   <main>
-    <div id="content-container" class="container">
-      <%= render partial: 'shared/flash_messages' unless flash.empty? %>
+    <div id="content-container" class="container-fluid">
       <div class="col-xs-12">
+        <%= render partial: 'shared/flash_messages' unless flash.empty? %>
 
         <%= yield %>
 

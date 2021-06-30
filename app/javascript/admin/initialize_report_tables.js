@@ -22,16 +22,11 @@ setup_report_tables = function() {
         pageLength: 25,
         stateSave: true,
         stateDuration: 60 * 60 * 24,
-        //serverSide: true
-        //columnDefs: {"visible": false, "targets": 2}
         paginate: false,
         language: {
             loadingRecords: '&nbsp;',
             processing: "<div class='spinner'><div class='spinner-info'>Loading Data...</div></div>",
-        },
-        fnDrawCallback() { return $('.committee-list').each(function(i, obj) {
-            if (obj.nextSibling) { obj.nextSibling.textContent = ' '; }
-        }); }
+        }
     };
 
     const column_options = () =>
@@ -39,33 +34,6 @@ setup_report_tables = function() {
             const column = $(this);
             return { "name": column.data('name'), "orderable": column.data('orderable'), "visible": column.data('visible') };})
     ;
-
-    $('.committee-report-index.datatable').dataTable(
-        (committee_report_options = {
-            columns: column_options(),
-            rowCallback(row, committee_report_data) {
-                const id = committee_report_data[0];
-                return $(row).attr('data-submission-id', id);
-            },
-            initComplete() {
-                const column = this.api().column("semester_year:name");
-                const default_semester = $(this).data('default-semester');
-                const select = $('.semester').on('change', function() {
-                    const val = $.fn.dataTable.util.escapeRegex($(this).val() || '');
-                    column.search( (val ? `^${val}$` : '') , true, false).draw();
-                });
-
-                const selected_item = default_semester;
-
-                select.val(selected_item).change();
-
-                const $filters = $("#row-selection-buttons"); //$(@api().table().container()).find('.dataTables_filter')
-
-                return select.val(selected_item).prop('selected', true);
-            }
-        }),
-        $.extend(committee_report_options, report_common_options)
-    );
 
     return $('.custom-report-index.datatable').dataTable(
         (custom_report_options = {
@@ -87,7 +55,7 @@ setup_report_tables = function() {
 
                 select.val(selected_item).change();
 
-                const $filters = $("#row-selection-buttons"); //$(@api().table().container()).find('.dataTables_filter')
+                const $filters = $("#row-selection-buttons");
 
                 return select.val(selected_item).prop('selected', true);
             }
@@ -95,12 +63,5 @@ setup_report_tables = function() {
         $.extend(custom_report_options, report_common_options)
     );
 };
-
-//$('div.dataTables_filter input').attr('placeholder', 'Search records...')
-
-//    $('.csv').on 'click',  ->
-//         fields = $('#row-selection-buttons').find('input[name="submission_ids"]')
-//        ids = selected_ids()
-//        fields.val(ids)
 
 $(document).ready(setup_report_tables);

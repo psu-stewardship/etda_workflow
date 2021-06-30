@@ -23,11 +23,12 @@ RSpec.describe "Release a submission with a public id", js: true, honors: true, 
     expect(submission.public_id).to be_blank
     released_count = Submission.released_for_publication.count
     visit admin_submissions_index_path(DegreeType.default, 'final_submission_approved')
-    sleep 1
     click_button 'Select Visible'
-    expect(page).to have_content('Showing', wait: 3)
-    # page.find('.btn.btn-primary.release-button', wait: 5).trigger('click')
-    click_button 'Release selected for publication'
+    sleep 1
+    expect(page).to have_content('Showing')
+    page.accept_confirm do
+      click_button 'Release selected for publication'
+    end
     expect(page).to have_content('All submissions were successfully published')
     updated_released_count = Submission.released_for_publication.count
     expect(page).to have_content("1 submission successfully released for publication")
@@ -46,11 +47,12 @@ RSpec.describe "Release a submission with a public id", js: true, honors: true, 
     submission_1.update_attribute(:status, 'waiting for publication release')
     released_count = Submission.released_for_publication.count
     visit admin_submissions_index_path(DegreeType.default, 'final_submission_approved')
-    sleep 1
     click_button 'Select Visible'
+    sleep 1
     expect(page).to have_content('Showing')
-    click_button 'Release selected for publication'
-    # page.find('.btn.btn-primary.release-button', wait: 5).trigger('click')
+    page.accept_confirm do
+      click_button 'Release selected for publication'
+    end
     submission_1.reload
     expect(page).to have_content('No submissions successfully released for publication.')
     expect(page).to have_content("Error occurred processing submission id: #{submission_1.id}, #{submission_1.author.last_name}, #{submission_1.author.first_name}")

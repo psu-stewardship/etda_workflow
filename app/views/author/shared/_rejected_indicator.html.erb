@@ -2,5 +2,5 @@
 <span class="sr-only">Step <%= step_number %></span>
 <%= text %>
 <% if @submission_view.display_notes?(step_number) %>
-    , please see the <%= link_to "#{note_type} notes from the administrator", review_path %>
+  <br> Please see the <%= link_to "#{note_type} notes from the administrator", review_path %>
 <% end %>

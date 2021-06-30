@@ -17,15 +17,9 @@ RSpec.describe "Printing a graduate signatory page as an admin", js: true, honor
       expect(page).to have_content('No')
     end
 
-    it "displays the submission print page when partner is graduate" do
+    it "updates 'Printed' to 'Yes' after printing" do
       click_link "Print Page"
-      # page.find('div#print-button')
-      expect(page).to have_content('INTENT')
-      expect(page).to have_content(submission.author.last_name)
-      expect(page).to have_content(submission.degree.name)
-      expect(page).to have_content(submission.semester)
-      expect(page).to have_content(submission.year)
-      expect(page).to have_content("NOTES")
+      expect(page).to have_content("Yes")
     end
   else
     it 'does not contain a print button for other partners' do

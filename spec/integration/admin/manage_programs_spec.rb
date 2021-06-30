@@ -44,7 +44,6 @@ RSpec.describe "Manage Programs", js: true do
     expect(page).not_to have_content(program2.name)
     status_str = printf('Showing 1 to %1d of %1d records', Program.all.count, Program.all.count)
     expect(page).to have_content(status_str)
-    find(:css, 'input#starts-with_check').set(true)
     fill_in 'Search records...', with: 'different program'
     expect(page).to have_content('No matching records found')
     expect(page).to have_link('Accessibility')
